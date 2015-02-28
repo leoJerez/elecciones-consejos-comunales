@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <ui:include src="/menu.xhtml" rendered="true" />
+        <p:outputLabel value="Registro de Trabajadores" style="font-size: 2vmax;margin-left: 39vmax;" />
+        <p:panel id="pnlInformacionCliente" style="width: 50vmax;position: relative;left: 23vmax; height: 44vmax;">
+            <p:panel id="pnlCodigoCliente" style=";width: 22vmax;left: 6vmax;top: 2vmax; border: none">
+                <p:outputLabel value="Codigo:" style="float: left;float: left;font-family: Georgia,serif;font-size: 1.3vmax;" />
+                <p:inputText value="#{clienteViewBean.trabajadorSelected.codigo}" style="margin-left: 3vmax;" />
+                <p:selectOneMenu value="#{clienteViewBean.trabajadorSelected}" converter="clienteConverter" style="position: absolute;top: 0.6vmax;left: 22vmax;">
+                    <f:selectItem itemLabel="Seleccione un Trabajador" />
+                    <f:selectItems value="#{clienteViewBean.listaTrabajadoresTodos}" var="tra" itemLabel="#{tra.nombre}" itemValue="#{tra}" />
+                </p:selectOneMenu>
+            </p:panel>
+            <p:panel id="pnlNombreCliente" style="float: left;width: 32vmax;left: 6vmax;top: 2vmax; border: none">
+                <p:outputLabel value="Nombre:" style="float: left;float: left;font-family: Georgia,serif;font-size: 1.3vmax;" />
+                <p:inputText value="#{clienteViewBean.trabajadorSelected.nombre}" style="margin-left: 2.3vmax; width: 22vmax;" />
+                <p:outputLabel value="Codigo pais:" style="float: left;float: left;font-family: Georgia,serif;font-size: 1.3vmax;" />
+                <p:inputText value="#{clienteViewBean.trabajadorSelected.codigopais}" style="margin-left: 2.3vmax; width: 22vmax;" />
+            </p:panel>
+            <p:panel style="float: left;width: 32vmax;left: 6vmax;top: 2vmax; border: none">
+                <p:outputLabel value="Estado de Residencia:" style="float: left;float: left;font-family: Georgia,serif;font-size: 1.3vmax;" />
+                <p:selectOneMenu value="#{clienteViewBean.estadoSelected.codigoEstado}" style="position: absolute;top: 7.5vmax;left: 17vmax;width: 158px;">
+                    <f:selectItem itemLabel="Seleccione un Estado" />
+                    <f:selectItems value="#{clienteViewBean.listaEstadosTodos}" var="est" itemLabel="#{est.nombre}" itemValue="#{est.codigo}" />
+                </p:selectOneMenu>
+            </p:panel>
+            <p:panel style="float: left;width: 32vmax;left: 6vmax;top: 2vmax; border: none">
+                <p:outputLabel value="Pais:" style="float: left;float: left;font-family: Georgia,serif;font-size: 1.3vmax;" />
+                <p:selectOneMenu value="#{clienteViewBean.estadoSelected.codigoPais}" style="position: absolute;top: 7.5vmax;left: 17vmax;width: 158px;">
+                    <f:selectItem itemLabel="Seleccione un Pais" />
+                    <f:selectItems value="#{clienteViewBean.listaPaisesTodos}" var="pais" itemLabel="#{pais.nombre}" itemValue="#{pais.codigo}" />
+                </p:selectOneMenu>
+            </p:panel>
+<!--            <p:panel style="float: left;width: 32vmax;left: 6vmax;top: 2vmax; border: none">
+                <p:outputLabel value="Ciudad de Residencia:" style="float: left;float: left;font-family: Georgia,serif;font-size: 1.3vmax;" />
+                <p:selectOneMenu  style="position: absolute;top: 10vmax;left: 17vmax;width: 158px;">
+                    <f:selectItem itemLabel="Seleccione una Ciudad" />
+                </p:selectOneMenu>
+            </p:panel>-->
+<!--            <p:panel style="float: left;width: 32vmax;left: 6vmax;top: 2vmax; border: none">
+                <p:outputLabel value="Direccion:" style="float: left;float: left;font-family: Georgia,serif;font-size: 1.3vmax;" />
+                <p:inputText style="margin-left: 1.7vmax;; width: 22vmax;" />
+            </p:panel>-->
+            <p:panel style="float: left;width: 32vmax;left: 6vmax;top: 2vmax; border: none">
+                <p:outputLabel value="Telefono:" style="float: left;float: left;font-family: Georgia,serif;font-size: 1.3vmax;" />
+                <p:inputText style="margin-left: 2.3vmax; width: 22vmax;" />
+            </p:panel>
+<!--            <p:panel style="position: relative;width: 32vmax;left: 6vmax;top: 2vmax; border: none">
+                <p:outputLabel for="button" value="Button:" />
+                <p:calendar id="button" value="#" showOn="button" />
+            </p:panel>-->
+<!--            <p:panel style="float: left;width: 32vmax;left: 6vmax;top: 2vmax; border: none">
+                <p:outputLabel value="Sexo:" style="float: left;float: left;font-family: Georgia,serif;font-size: 1.3vmax;" />
+                <p:selectOneMenu style="position: absolute;top: 18.7vmax;left: 10.3vmax;width: 158px;">
+                    <f:selectItem itemLabel="Seleccione un Cliente" />
+                </p:selectOneMenu>
+            </p:panel>-->
+            <p:panel style="float: left;width: 32vmax;left: 6vmax;top: 2vmax; border: none">
+                <p:outputLabel value="Sueldo:" style="float: left;float: left;font-family: Georgia,serif;font-size: 1.3vmax;" />
+                <p:inputText value="#{clienteViewBean.trabajadorSelected.sueldo}" style="margin-left: 12vmax;width: 22vmax;margin-top: -2.3vmax;" />
+            </p:panel>
+            <p:panel visible="true" id="acciones" style="position: relative;height: 8vmax;left: 6vmax;top: 2vmax; border: none; width: 12vmax;margin-left: 7vmax;" >
+                <p:commandLink title="Guardar" actionListener="#{clienteViewBean.guardarTrabajador()}" >
+                    <p:graphicImage url="../resources/img/add.png" style="width: 3vmax;"  />
+                </p:commandLink>
+                <p:commandLink title="Editar">
+                    <p:graphicImage url="../resources/img/update.png" style="width: 3vmax;" />
+                </p:commandLink>
+                <p:commandLink title="Eliminar" actionListener="#{clienteViewBean.eliminarTrabajador()}"  >
+                    <p:graphicImage url="../resources/img/remove.png" style="width: 3vmax;" />
+                </p:commandLink>
+            </p:panel>
+        </p:panel>
+    </ui:define>
+    <ui:define name="footer">
+        <p:graphicImage url="../resources/img/java-mysql.jpg" style="height: 6vmax;width: 16vmax;margin-left: 41vmax;margin-top: 4vmax;" />
+    </ui:define>
+</ui:composition>

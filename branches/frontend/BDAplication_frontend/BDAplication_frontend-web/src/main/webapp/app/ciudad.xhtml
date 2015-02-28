@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <ui:include src="/menu.xhtml" rendered="true" />
+        <p:outputLabel value="Registro de Ciudad" style="font-size: 2vmax;margin-left: 39vmax;" />
+        <p:panel id="pnlListadoCiudades" style="position: relative;width: 32vmax;left: 35vmax;top: 2vmax; border: none; height: 3vmax;">
+            <p:outputLabel value="Estados Disponibles:" style="float: left;float: left;font-family: Georgia,serif;font-size: 1.3vmax;" />
+            <p:selectOneMenu value="#{ciudadViewBean.estadoSelected}" converter="estadoCiudadConverter" style="position: absolute;top: 0.5vmax;left: 15vmax;">
+                <f:selectItem itemLabel="Seleccione un Estado" />
+                <f:selectItems value="#{ciudadViewBean.listaEstados}" var="estado" itemLabel="#{estado.nombre}" itemValue="#{estado}" />
+                <p:ajax event="change" listener="#{ciudadViewBean.cargarCiudades()}" update="pnlInformacionCiudad" />
+            </p:selectOneMenu>
+        </p:panel>
+        <p:panel id="pnlInformacionCiudad" style="width: 45vmax;position: relative;left: 28vmax;top: 3vmax;height: 18vmax;">
+            <p:panel id="pnlCodigoCiudad" style="position: relative;width: 22vmax;left: 6vmax;top: 2vmax; border: none">
+                <p:outputLabel value="Codigo:" style="float: left;float: left;font-family: Georgia,serif;font-size: 1.3vmax;" />
+                <p:inputText  style="margin-left: 3vmax;" />
+                <p:selectOneMenu value="#{ciudadViewBean.ciudadSelected}" converter="ciudadConverter" style="position: absolute;top: 0.6vmax;left: 22vmax;">
+                    <f:selectItem itemLabel="Seleccione una Ciudad" />
+                    <f:selectItems value="#{ciudadViewBean.listaCiudadesTodas}" var="ciudad" itemLabel="#{ciudad.nombre}" itemValue="#{ciudad}"  />
+                </p:selectOneMenu>
+            </p:panel>
+            <p:panel id="pnlNombreCiudad" style="position: relative;width: 32vmax;left: 6vmax;top: 2vmax; border: none">
+                <p:outputLabel value="Nombre:" style="float: left;float: left;font-family: Georgia,serif;font-size: 1.3vmax;" />
+                <p:inputText style="margin-left: 2.3vmax; width: 22vmax;" />
+            </p:panel>
+            <p:panel id="acciones" style="position: relative;left: 9vmax;top: 2vmax; border: none; width: 12vmax;margin-left: 7vmax;" >
+                <p:commandLink title="Guardar" >
+                    <p:graphicImage url="../resources/img/add.png" style="width: 3vmax;" />
+                </p:commandLink>
+                <p:commandLink title="Editar" >
+                    <p:graphicImage url="../resources/img/update.png" style="width: 3vmax;" />
+                </p:commandLink>
+                <p:commandLink title="Eliminar" >
+                    <p:graphicImage url="../resources/img/remove.png" style="width: 3vmax;" />
+                </p:commandLink>
+            </p:panel>
+        </p:panel>
+    </ui:define>
+    <ui:define name="footer">
+        <p:graphicImage url="../resources/img/java-mysql.jpg" style="height: 6vmax;width: 16vmax;margin-left: 41vmax;margin-top: 4vmax;" />
+    </ui:define>
+</ui:composition>
