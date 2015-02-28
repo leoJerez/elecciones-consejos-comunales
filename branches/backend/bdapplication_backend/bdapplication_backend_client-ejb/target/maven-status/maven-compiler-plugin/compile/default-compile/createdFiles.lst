@@ -1,0 +1,15 @@
+com\mycompany\backend\bdapplication\business\dto\EstadoDTO.class
+com\mycompany\backend\client\AuthSessionBean.class
+com\mycompany\backend\bdapplication\business\dto\CiudadDTO.class
+com\mycompany\backend\bdapplication\business\dto\ViviendaDTO.class
+com\mycompany\backend\bdapplication\business\delegate\HabitanteDelegate.class
+com\mycompany\backend\bdapplication\business\delegate\EstadoDelegate.class
+com\mycompany\backend\bdapplication\business\dto\AuthenticateBaseSQLDTO.class
+com\mycompany\backend\bdapplication\business\facade\CiudadBusinessFacadeRemote.class
+com\mycompany\backend\bdapplication\business\dto\AbstractFacade.class
+com\mycompany\backend\bdapplication\business\facade\EstadoBusinessFacadeRemote.class
+com\mycompany\backend\bdapplication\business\enums\Sexo.class
+com\mycompany\backend\bdapplication\business\facade\HabitanteBusinessFacadeRemote.class
+com\mycompany\backend\bdapplication\business\delegate\CiudadDelegate.class
+com\mycompany\backend\bdapplication\business\dto\ClienteDTO.class
+com\mycompany\backend\bdapplication\business\dto\HabitanteDTO.class

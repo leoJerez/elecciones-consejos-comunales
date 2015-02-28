@@ -1,0 +1,3 @@
+com\mycompany\backend\bdapplication\service\EstadoFacadeRest.class
+com\mycompany\backend\bdapplication\service\HabitanteFacadeRest.class
+com\mycompany\backend\bdapplication\service\CiudadFacadeRest.class
