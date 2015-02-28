@@ -1,0 +1,60 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 07/02/2015, 03:10:36 PM
+    Author     : Roberth
+*/
+
+@font-face {
+    font-family: 'Titillium Web';
+    src: url('../fonts/Titillium_Web/TitilliumWeb-Regular.eot'); /*  Para Internet Explorer */
+    src: /*local('Titillium Web'),*/ /* Para el resto de navegadores */
+        url("#{resource['fonts/Titillium_Web/TitilliumWeb-Regular.ttf']}") format('truetype');
+    /*                 url('../fonts/Titillium_Web/TitilliumWeb-Regular.woff') format('woff'),
+                     url('../fonts/Titillium_Web/TitilliumWeb-Regular.svg') format('svg')*/
+}
+#top {
+    position: relative;
+    top: -3%;
+    width: 98.7%;
+    height: 60px;
+    background: none repeat scroll 0% 0% #424548;
+    color: #FFF;
+    padding: 1.5vmax;
+    margin-left: -1%;
+}
+.labelTop {
+    position: relative;
+    top: 1vmax;
+    left: 4vmax;
+    font-size: 3.5em;
+    color: white;
+}
+a:link, a:visited {
+    color: #424548;
+}
+.ui-menu.ui-menubar{
+    width: 29%;
+    /* position: relative; */
+    top: -7em;
+    left: 100%;
+    background: none repeat scroll 0% 0% #424548;
+    border: none;
+}
+.ui-menu.ui-widget .ui-menuitem-link .ui-menuitem-text {
+    color: white;
+}
+.ui-menu.ui-widget .ui-menuitem-link .ui-menuitem-icon {
+    background-color: white;
+}
+.ui-menu.ui-menubar .ui-menu-parent .ui-menu-child {
+    height: 7vmax !important;
+    background: none repeat scroll 0% 0% #424548;
+    border: none !important;
+}
+.calendar input{
+    width: 8.9%;
+}

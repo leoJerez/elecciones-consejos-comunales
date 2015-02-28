@@ -1,0 +1,9 @@
+com\mycompany\bdaplication\controllers\converter\ClienteConverter.class
+com\mycompany\bdaplication\controllers\converter\CiudadConverter.class
+com\mycompany\bdaplication\controllers\converter\EstadoCiudadConverter.class
+com\mycompany\bdaplication\controllers\view\CiudadViewBean.class
+com\mycompany\bdaplication\controllers\converter\EstadoConverter.class
+com\mycompany\bdaplication\controllers\view\EstadoViewBean.class
+com\mycompany\bdaplication\controllers\view\HabitanteViewBean.class
+com\mycompany\bdaplication\controllers\view\ClienteViewBean.class
+com\mycompany\bdaplication\controllers\view\ViviendaViewBean.class
