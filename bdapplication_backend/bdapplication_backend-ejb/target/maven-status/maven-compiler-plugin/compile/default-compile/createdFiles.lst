@@ -1,0 +1,7 @@
+com\mycompany\backend\bdapplication\business\utils\BusinessObjectConverter.class
+com\mycompany\backend\bdapplication\business\facade\EstadoBusinessFacade.class
+com\mycompany\backend\bdapplication\business\facade\CiudadBusinessFacadeLocal.class
+com\mycompany\backend\bdapplication\business\facade\CiudadBusinessFacade.class
+com\mycompany\backend\bdapplication\business\facade\HabitanteBusinessFacade.class
+com\mycompany\backend\bdapplication\business\facade\EstadoBusinessFacadeLocal.class
+com\mycompany\backend\bdapplication\business\facade\HabitanteBusinessFacadeLocal.class

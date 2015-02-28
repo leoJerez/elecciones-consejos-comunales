@@ -1,0 +1,15 @@
+C:\Users\Roberth\Desktop\bdapplication_backend\bdapplication_backend_client-ejb\src\main\java\com\mycompany\backend\bdapplication\business\dto\AbstractFacade.java
+C:\Users\Roberth\Desktop\bdapplication_backend\bdapplication_backend_client-ejb\src\main\java\com\mycompany\backend\bdapplication\business\enums\Sexo.java
+C:\Users\Roberth\Desktop\bdapplication_backend\bdapplication_backend_client-ejb\src\main\java\com\mycompany\backend\bdapplication\business\facade\CiudadBusinessFacadeRemote.java
+C:\Users\Roberth\Desktop\bdapplication_backend\bdapplication_backend_client-ejb\src\main\java\com\mycompany\backend\bdapplication\business\delegate\EstadoDelegate.java
+C:\Users\Roberth\Desktop\bdapplication_backend\bdapplication_backend_client-ejb\src\main\java\com\mycompany\backend\bdapplication\business\dto\ClienteDTO.java
+C:\Users\Roberth\Desktop\bdapplication_backend\bdapplication_backend_client-ejb\src\main\java\com\mycompany\backend\bdapplication\business\facade\EstadoBusinessFacadeRemote.java
+C:\Users\Roberth\Desktop\bdapplication_backend\bdapplication_backend_client-ejb\src\main\java\com\mycompany\backend\bdapplication\business\dto\ViviendaDTO.java
+C:\Users\Roberth\Desktop\bdapplication_backend\bdapplication_backend_client-ejb\src\main\java\com\mycompany\backend\bdapplication\business\delegate\HabitanteDelegate.java
+C:\Users\Roberth\Desktop\bdapplication_backend\bdapplication_backend_client-ejb\src\main\java\com\mycompany\backend\bdapplication\business\facade\HabitanteBusinessFacadeRemote.java
+C:\Users\Roberth\Desktop\bdapplication_backend\bdapplication_backend_client-ejb\src\main\java\com\mycompany\backend\bdapplication\business\dto\CiudadDTO.java
+C:\Users\Roberth\Desktop\bdapplication_backend\bdapplication_backend_client-ejb\src\main\java\com\mycompany\backend\bdapplication\business\dto\AuthenticateBaseSQLDTO.java
+C:\Users\Roberth\Desktop\bdapplication_backend\bdapplication_backend_client-ejb\src\main\java\com\mycompany\backend\bdapplication\business\dto\HabitanteDTO.java
+C:\Users\Roberth\Desktop\bdapplication_backend\bdapplication_backend_client-ejb\src\main\java\com\mycompany\backend\bdapplication\business\dto\EstadoDTO.java
+C:\Users\Roberth\Desktop\bdapplication_backend\bdapplication_backend_client-ejb\src\main\java\com\mycompany\backend\bdapplication\business\delegate\CiudadDelegate.java
+C:\Users\Roberth\Desktop\bdapplication_backend\bdapplication_backend_client-ejb\src\main\java\com\mycompany\backend\client\AuthSessionBean.java
