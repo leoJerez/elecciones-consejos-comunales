@@ -1,0 +1,11 @@
+com\mycompany\backend\bdapplication\model\Ciudad.class
+com\mycompany\backend\bdapplication\model\facade\AbstractFacade.class
+com\mycompany\backend\bdapplication\model\facade\CiudadFacadeLocal.class
+com\mycompany\backend\bdapplication\model\facade\EstadoFacade.class
+.netbeans_automatic_build
+com\mycompany\backend\bdapplication\model\facade\HabitanteFacade.class
+com\mycompany\backend\bdapplication\model\facade\HabitanteFacadeLocal.class
+com\mycompany\backend\bdapplication\model\Estado.class
+com\mycompany\backend\bdapplication\model\facade\CiudadFacade.class
+com\mycompany\backend\bdapplication\model\facade\EstadoFacadeLocal.class
+com\mycompany\backend\bdapplication\model\Habitante.class
