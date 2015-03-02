@@ -1,0 +1,268 @@
+/*********************** HEADER ****************************/
+.panelHeader {
+	background: url('../img/backgroundHeader.png') repeat-x scroll 0% 0%
+		transparent;
+	border: medium none;
+	height: 11vmax;
+	margin-top: -1.5vmax;
+	width: 104%;
+	margin-left: -1.7em;
+	background-size: 100% 100%;
+	text-align: center;
+}
+
+.logoOrion {
+	float: right;
+	background: url('../img/logoDcyt.jpg') no-repeat scroll 0% 0%/100% auto
+		transparent;
+	height: 11vmax;
+	width: 9%;
+	background-size: 100%;
+	border: none;
+	margin-top: 1vmax;
+	margin-right: 5vw;
+}
+
+.banner {
+	float: left;
+	background: url('../img/consejosComunales.png') no-repeat scroll 0% 0%/100%
+		auto transparent;
+	width: 8%;
+	height: 6vmax;
+	background-size: 100% 100%;
+	border: none;
+	margin-top: 1vmax;
+	margin-left: 3vw;
+}
+
+.textoHeader {
+	width: 63%;
+	position: absolute;
+	left: 16vmax;
+	top: 3vmax;
+	font-size: 4.5vw;
+}
+
+/**************** BOTONES DONACION - VOLUNTARIO - CITAS ***************/
+.contenedorFunciones {
+	display: flex;
+	align-items: flex-start;
+}
+
+.panelFuncion {
+	float: left;
+	width: 13vmax;
+	background: none repeat scroll 0% 0% #ededed;
+	height: 8vmax;
+	border-radius: 20px;
+	position: relative;
+	border: 2px solid #a2a2a2;
+}
+
+.panelFuncionPrimero {
+	/* 	margin-left: 3vmax; */
+	
+}
+
+.panelFuncionSegundo {
+	/* 	margin-left: 4vmax; */
+	margin-left: 5vmax;
+}
+
+.panelInternoFuncion {
+	border-top: 1px solid #CDCDCD;
+	position: absolute;
+	bottom: 0px;
+	width: 97%;
+	left: 0;
+	height: 21%;
+}
+
+.panelFuncion:hover .funcionHover {
+	opacity: 1;
+	transition: all 500ms ease-in;
+	-webkit-transition: all 500ms ease-in;
+}
+
+.panelFuncion:hover .panelFuncionSinHover {
+	opacity: 0;
+}
+
+.funcionHover {
+	opacity: 0;
+	/* 	background: #FFFFFF; */
+	width: 13vmax;
+	height: 8vmax;
+	top: 0;
+	left: 0;
+	position: absolute;
+	border-radius: 20px;
+	background: rgba(183, 222, 237, 1);
+	background: -moz-linear-gradient(top, rgba(183, 222, 237, 1) 0%,
+		rgba(113, 206, 239, 0.8) 50%, rgba(33, 180, 226, 0.8) 51%,
+		rgba(183, 222, 237, 0.6) 100%);
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(183, 222,
+		237, 1)), color-stop(50%, rgba(113, 206, 239, 0.8)),
+		color-stop(51%, rgba(33, 180, 226, 0.8)),
+		color-stop(100%, rgba(183, 222, 237, 0.6)));
+	background: -webkit-linear-gradient(top, rgba(183, 222, 237, 1) 0%,
+		rgba(113, 206, 239, 0.8) 50%, rgba(33, 180, 226, 0.8) 51%,
+		rgba(183, 222, 237, 0.6) 100%);
+	background: -o-linear-gradient(top, rgba(183, 222, 237, 1) 0%,
+		rgba(113, 206, 239, 0.8) 50%, rgba(33, 180, 226, 0.8) 51%,
+		rgba(183, 222, 237, 0.6) 100%);
+	background: -ms-linear-gradient(top, rgba(183, 222, 237, 1) 0%,
+		rgba(113, 206, 239, 0.8) 50%, rgba(33, 180, 226, 0.8) 51%,
+		rgba(183, 222, 237, 0.6) 100%);
+	background: linear-gradient(to bottom, rgba(183, 222, 237, 1) 0%,
+		rgba(113, 206, 239, 0.8) 50%, rgba(33, 180, 226, 0.8) 51%,
+		rgba(183, 222, 237, 0.6) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b7deed',
+		endColorstr='#b7deed', GradientType=0);
+}
+
+.textoHoverFuncion {
+	font-size: 1.9vmax;
+	font-weight: lighter;
+	margin-top: 10%;
+	position: absolute;
+	width: 100%;
+	left: 0;
+	color: #303030;
+	cursor: pointer;
+}
+
+.panelFuncionSinHover {
+	transition: all 500ms ease-in;
+	-webkit-transition: all 500ms ease-in;
+}
+
+.imagenInternaFuncion {
+	width: 58%;
+	height: 5vmax;
+	margin-top: -1vmax;
+}
+
+.textoInternoFuncion {
+	color: rgb(29, 123, 173);
+	/* 	font-weight: bold; */
+	font-size: 1vmax;
+	margin-top: -23vmax;
+	vertical-align: center;
+	padding-top: -2vmax;
+	position: absolute;
+	margin-top: -0.4em;
+	width: 100%;
+	left: 0px;
+}
+
+/********************** REDES SOCIALES ********************/
+.red:hover .iconosRedes {
+	filter: grayscale(1);
+	transition: all 200ms ease-out;
+	-webkit-transition: all 200ms ease-out;
+	width: 60%
+}
+
+.iconosRedes {
+	width: 30%;
+	float: left;
+}
+
+.primeraRed {
+	/* 	margin-left: 6%; */
+	
+}
+
+/********************** MENU ***********************/
+.panelMenu {
+	background: url('../img/backgroundMenu.png') repeat-x scroll 0% 0%
+		transparent;
+	border: medium none;
+	height: 3vmax;
+	margin-top: -1.5vmax;
+	width: 104%;
+	margin-left: -1.7em;
+	background-size: 100% 100%;
+	text-align: center;
+}
+
+.menuItem {
+	width: 11%;
+	float: left;
+	height: 2vmax;
+	margin-top: -0.6em;
+	position: relative;
+}
+
+.primerMenuItem {
+	margin-left: 20vmax;
+}
+
+.textoMenu {
+	color: #FFFFFF !important;
+	text-decoration: none;
+}
+
+.menuItem:hover .textoMenu {
+	opacity: 0;
+	transition: all 200ms ease-in;
+	-webkit-transition: all 200ms ease-in;
+}
+
+.menuItem:hover .panelHoverMenuItem {
+	opacity: 1;
+	transition: all 200ms ease-out;
+	-webkit-transition: all 200ms ease-out;
+}
+
+.textoMenuHover {
+	color: #188ddb;
+	text-decoration: none;
+}
+
+.panelHoverMenuItem {
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+	background: #ebebeb;
+	border-bottom: 3px solid #a2a2a2;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+/****************** BOTON INICIO DE SESION ********************/
+.botonInicioSesion {
+	margin-bottom: 1em;
+	background: #c4da3b;
+	border-radius: 4px;
+	width: 100%;
+	height: 2.5vmax;
+	color: #FFF;
+	font-weight: bold;
+	font-size: 1.2vmax;
+}
+/************ PRIMEFACES *********************/
+.ui-accordion .ui-accordion-header {
+	background: none repeat scroll 0% 0% rgb(0, 148, 181) !important;
+	border-radius: 4px !important;
+	color: #f9f9f9 !important;
+}
+
+/* .ui-widget { */
+/* 	font-family: inherit !important; */
+/* 	font-size: inherit !important; */
+/* } */
+
+/* .ui-widget-content { */
+/* border: 0px solid #a6c9e2 !important; */
+/* background: transparent !important; */
+/* color: inherit !important; */
+/* } */
+
+/* .ui-corner-all { */
+/* -moz-border-radius: inherit !important; */
+/* -webkit-border-radius: inherit !important; */
+/* border-radius: inherit !important; */
+/* } */
