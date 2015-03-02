@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:pe="http://primefaces.org/ui/extensions" template="../structural/template.xhtml">
+
+	<ui:define name="content">
+		<h:form id="formHabitante" style="width: 76.8%; margin: 0 auto;">
+			<p:growl id="growl" showDetail="true" sticky="true" life="5000" />
+			<p:panel id="pnlInformacionHabitante">
+				<p:outputLabel value="Registro de Vecinos"
+					style="font-size: 3vw;" />
+				<p:panel id="contenido" style="border: 0px; height: 30%">
+					<p:panel id="pnlCedula" style="width: 100%; border: 0px">
+						<p:outputLabel value="*Cedula:"
+							style="font-family: Georgia,serif; font-size: 1.3em;" />
+						<p:selectOneMenu id="cmbCedula"
+							value="#{vecinoViewBean.nacionalidadSelected}"
+							style="width: 45px;position: relative;top: 7px;left: 7px;">
+							<f:selectItem itemLabel="V" itemValue="V" />
+							<f:selectItem itemLabel="E" itemValue="E" />
+						</p:selectOneMenu>
+						<p:inputText value="#{vecinoViewBean.newVecino.cedula}"
+							placeholder="Ej:00000000" style="margin-left: 1%; width: 114px;">
+							<pe:keyFilter regEx="/[0-9]/i" />
+						</p:inputText>
+						<p:outputLabel value="*Nombre:"
+							style="font-family: Georgia,serif; font-size: 1.3em; margin-left: 2.1%;" />
+						<p:inputText value="#{vecinoViewBean.newVecino.nombre}"
+							style="margin-left: 1.79%;">
+							<pe:keyFilter regEx="/[a-z ]/i" />
+						</p:inputText>
+						<p:outputLabel value="*Apellido:"
+							style="font-family: Georgia,serif; font-size: 1.3em; margin-left: 2%;" />
+						<p:inputText value="#{vecinoViewBean.newVecino.apellido}"
+							style="margin-left: 1%;">
+							<pe:keyFilter regEx="/[a-z ]/i" />
+						</p:inputText>
+					</p:panel>
+					<p:panel id="pnlNombre" style="width: 100%; border: 0px">
+						<p:outputLabel value="*Sexo:"
+							style="font-family: Georgia,serif; font-size: 1.3em;" />
+						<p:selectOneMenu id="cmbSexo"
+							value="#{vecinoViewBean.newVecino.sexo}"
+							style="width: 120px;position: relative;top: 7px;left: 7px;">
+							<f:selectItem itemLabel="Seleccione" />
+							<f:selectItems value="#{vecinoViewBean.sexoVecino}" var="sexo"
+								itemLabel="#{sexo.valor}" itemValue="#{sexo.valor}" />
+						</p:selectOneMenu>
+						<p:outputLabel value="*Fecha de Nacimiento:"
+							style="font-family: Georgia,serif; font-size: 1.3em; margin-left: 2%;" />
+						<p:calendar id="calendar"
+							value="#{vecinoViewBean.newVecino.fechaNacimiento}"
+							styleClass="calendar" style="margin-left: 1%; width: 9.3%;">
+							<pe:keyFilter regEx="/[0-9/]/i" />
+						</p:calendar>
+					</p:panel>
+					<p:panel id="pnlApellido" style="width: 100%; border: 0px">
+						<p:outputLabel value="Tlf Fijo:"
+							style="font-family: Georgia,serif; font-size: 1.3em;" />
+						<p:inputText value="#{vecinoViewBean.newVecino.telefono}"
+							style="margin-left: 1%;width: 17.7%;">
+							<pe:keyFilter regEx="/[0-9]/i" />
+						</p:inputText>
+						<p:outputLabel value="Tlf Movil:"
+							style="font-family: Georgia,serif; font-size: 1.3em; margin-left: 3.3%">
+							<pe:keyFilter regEx="/[0-9]/i" />
+						</p:outputLabel>
+						<p:inputText value="#{vecinoViewBean.newVecino.celular}"
+							style="margin-left: 1%;" />
+						<p:outputLabel value="*Correo:"
+							style="font-family: Georgia,serif; font-size: 1.3em; margin-left: 2.8%" />
+						<p:inputText value="#{vecinoViewBean.newVecino.correo}"
+							style="margin-left: 1%; width: 20.9%;">
+							<pe:keyFilter regEx="/[a-z0-9@.]/i" />
+						</p:inputText>
+					</p:panel>
+
+
+					<p:commandButton value="Agregar"
+						actionListener="#{vecinoViewBean.guardarVecino()}"
+						icon="ui-icon-check" style="margin-left: 42%;"
+						update="listaPrueba" />
+					<p:dataTable id="listaPrueba"
+						value="#{vecinoViewBean.listaDeVecinosActivos}" var="habitante"
+						editable="true" editMode="cell" widgetVar="cellHabitante"
+						style="margin-top: 2%; height: 15vmax;" paginator="true" rows="4"
+						paginatorPosition="bottom"
+						currentPageReportTemplate="({currentPage} de {totalPages})"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+						<p:column headerText="Cedula" filterBy="#{habitante.cedula}">
+							<p:outputLabel value="#{habitante.cedula}" />
+						</p:column>
+						<p:column headerText="Nombre" filterBy="#{habitante.nombre}">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{habitante.nombre}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{habitante.nombre}" style="width:96%"
+										label="Nombre" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="Apellido">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{habitante.apellido}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{habitante.apellido}" style="width:96%"
+										label="Apellido" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="Tlf Movil">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{habitante.celular}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{habitante.celular}" style="width:96%"
+										label="Fecha Nacimiento" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="Correo">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{habitante.correo}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{habitante.correo}" style="width:96%"
+										label="Fecha Nacimiento" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="Operaciones">
+							<p:commandButton title="Editar" icon="ui-icon-pencil"
+								action="#{vecinoViewBean.editarVecino()}"
+								style="margin-left: 21%;">
+								<f:setPropertyActionListener value="#{habitante}"
+									target="#{vecinoViewBean.vecinoSelected}" />
+							</p:commandButton>
+							<p:commandButton title="Eliminar"
+								action="#{vecinoViewBean.eliminarVecino()}" icon="ui-icon-trash">
+								<f:setPropertyActionListener value="#{habitante}"
+									target="#{vecinoViewBean.vecinoSelected}" />
+								<p:confirm header="Confirmar Acción"
+									message="Estas Seguro que desea eliminar el habitante?"
+									icon="ui-icon-alert" />
+							</p:commandButton>
+						</p:column>
+					</p:dataTable>
+				</p:panel>
+			</p:panel>
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+				<p:commandButton value="Si" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check"
+					style="margin-left: 28%;" update="growl" />
+				<p:commandButton value="No" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+		</h:form>
+	</ui:define>
+	<ui:define name="footer">
+		<p:graphicImage url="../resources/img/java-mysql.jpg"
+			style="height: 6vmax;width: 16vmax;margin-left: 41vmax;margin-top: 4vmax;" />
+	</ui:define>
+</ui:composition>

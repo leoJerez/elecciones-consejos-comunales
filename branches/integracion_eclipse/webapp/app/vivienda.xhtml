@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/TemplateSCE.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="content">
+        <h:form style="width: 76.8%; height: 74%;">
+            <p:growl id="growl" showDetail="true" sticky="true" /> 
+            <p:panel id="pnlInformacionVivienda" style="width: 130.8%;height: 107.78%;margin-top: -3%;margin-left: -0.62%;border: 0px;">
+                <p:outputLabel value="Registro de Vivienda" style="font-size: 3em;margin-left: 26%;" />
+                <p:panel id="contenido" style="margin-top: 2%;">
+                    <p:outputLabel value="Nro Casa:" style="font-family: Georgia,serif; font-size: 1.3em; margin-left: 5.9%;" />
+                    <p:inputText value="#{viviendaViewBean.newVivienda.numero}" style="margin-left: 1.79%;" />
+                    <p:outputLabel value="Calle:" style="font-family: Georgia,serif; font-size: 1.3em; margin-left: 2%;" />
+                    <p:inputText value="#{viviendaViewBean.newVivienda.calle}" style="margin-left: 1%;" />
+                    <p:commandButton value="Add" actionListener="#{viviendaViewBean.guardarVivienda()}" update="listaPrueba" style="margin-left: 2%;" />
+                </p:panel>
+                <p:dataTable id="listaPrueba" value="#{viviendaViewBean.listaDeViviendas}" var="vivienda" style="width: 35%; margin-left: 27.5%; margin-top: 1%;" >
+                    <p:column headerText="Nro Casa">
+                        <p:outputLabel value="#{vivienda.numero}" />
+                    </p:column>
+                    <p:column headerText="Calle">
+                        <p:outputLabel value="#{vivienda.calle}" />
+                    </p:column>
+                </p:dataTable>
+            </p:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>
