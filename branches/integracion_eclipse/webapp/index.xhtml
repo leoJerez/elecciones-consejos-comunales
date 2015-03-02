@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> -->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="structural/template.xhtml">
+
+	<ui:define name="content">
+		<h:form>
+			<p:panel style="float: left; width: 81%;">
+				<ui:include src="/content/carouselNoticias.xhtml" />
+
+				<p:panel styleClass="contenedorFunciones">
+					<p:commandLink actionListener="#{principalRequestBean.redireccionar('/faces/app/habitanteCRUD.xhtml')}">
+						<p:panel styleClass="panelFuncion panelFuncionPrimero">
+							<p:panel styleClass="panelFuncionSinHover">
+								<p:graphicImage url="../resources/img/schedule.png"
+									styleClass="imagenInternaFuncion" />
+								<p:panel styleClass="panelInternoFuncion">
+									<p:outputLabel value="Actualizar Datos"
+										styleClass="textoInternoFuncion" />
+								</p:panel>
+							</p:panel>
+							<p:panel styleClass="funcionHover">
+								<p:outputLabel
+									value="Mantén al día la información de los vecinos"
+									styleClass="textoHoverFuncion" />
+							</p:panel>
+						</p:panel>
+					</p:commandLink>
+
+					<p:commandLink>
+						<p:panel styleClass="panelFuncion panelFuncionSegundo">
+							<p:panel styleClass="panelFuncionSinHover">
+								<p:graphicImage url="../resources/img/postularse.jpg"
+									styleClass="imagenInternaFuncion" />
+								<p:panel styleClass="panelInternoFuncion">
+									<p:outputLabel value="Postularse"
+										styleClass="textoInternoFuncion" />
+								</p:panel>
+							</p:panel>
+							<p:panel styleClass="funcionHover">
+								<p:outputLabel value="Candidatos al Consejo Comunal"
+									styleClass="textoHoverFuncion" />
+							</p:panel>
+						</p:panel>
+					</p:commandLink>
+
+					<p:commandLink>
+						<p:panel styleClass="panelFuncion panelFuncionSegundo">
+							<p:panel styleClass="panelFuncionSinHover">
+								<p:graphicImage url="../resources/img/registroElectoral.png"
+									styleClass="imagenInternaFuncion" />
+								<p:panel styleClass="panelInternoFuncion">
+									<p:outputLabel value="Registro Electoral"
+										styleClass="textoInternoFuncion" />
+								</p:panel>
+							</p:panel>
+							<p:panel styleClass="funcionHover">
+								<p:outputLabel value="Consultar Registro Electoral"
+									styleClass="textoHoverFuncion" />
+							</p:panel>
+						</p:panel>
+					</p:commandLink>
+
+					<p:commandLink>
+						<p:panel styleClass="panelFuncion panelFuncionSegundo">
+							<p:panel styleClass="panelFuncionSinHover">
+								<p:graphicImage url="../resources/img/correo.png"
+									styleClass="imagenInternaFuncion" />
+								<p:panel styleClass="panelInternoFuncion">
+									<p:outputLabel value="Comunicación Interna"
+										styleClass="textoInternoFuncion" />
+								</p:panel>
+							</p:panel>
+							<p:panel styleClass="funcionHover">
+								<p:outputLabel value="Mensajería Masiva a los Vecinos"
+									styleClass="textoHoverFuncion" />
+							</p:panel>
+						</p:panel>
+					</p:commandLink>
+				</p:panel>
+			</p:panel>
+
+
+
+
+			<p:panel
+				style="width: 16% !important; float: right; margin-top: -1vmax;">
+
+				<p:commandButton value="Iniciar Sesión"
+					styleClass="botonInicioSesion" />
+
+				<a class="twitter-timeline"
+					href="https://twitter.com/Jerez_Leo/favorites"
+					data-widget-id="571904016402382848">Tweets favoritos de
+					@Jerez_Leo</a>
+				<script>
+					!function(d, s, id) {
+						var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/
+								.test(d.location) ? 'http' : 'https';
+						if (!d.getElementById(id)) {
+							js = d.createElement(s);
+							js.id = id;
+							js.src = p + "://platform.twitter.com/widgets.js";
+							fjs.parentNode.insertBefore(js, fjs);
+						}
+					}(document, "script", "twitter-wjs");
+				</script>
+				<p:panel>
+					<p:commandLink
+						actionListener="#{principalRequestBean.redireccionar('https://www.facebook.com/')}"
+						styleClass="red">
+						<p:graphicImage url="../resources/img/facebook.png"
+							styleClass="iconosRedes primeraRed" />
+					</p:commandLink>
+					<p:commandLink
+						actionListener="#{principalRequestBean.redireccionar('https://plus.google.com/getstarted/getstarted?fww=1')}"
+						styleClass="red">
+						<p:graphicImage url="../resources/img/gplus.png"
+							styleClass="iconosRedes" />
+					</p:commandLink>
+					<p:commandLink
+						actionListener="#{principalRequestBean.redireccionar('https://instagram.com/')}"
+						styleClass="red">
+						<p:graphicImage url="../resources/img/instagram.png"
+							styleClass="iconosRedes" />
+					</p:commandLink>
+				</p:panel>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
