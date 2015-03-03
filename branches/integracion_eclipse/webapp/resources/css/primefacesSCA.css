@@ -1,0 +1,404 @@
+.ui-widget {
+    color: #000000 !important;
+    font-family: Roboto Slab !important;
+}
+.ui-button {
+    width: auto !important;
+    height: auto !important;
+    background: #00a3d9 !important;
+    border: none !important;
+    border-right: 1px white solid !important;
+    font-family: Helvetica !important;
+    color: #FFFFFF !important;
+    font-size: 10px !important;
+    font-weight: normal !important;
+    border-radius: 0px !important;
+    -webkit-border-radius: 0px !important;
+}
+.ui-datatable .ui-button {
+    color: #FFFFFF !important;
+}
+.ui-button:hover {
+    font-weight: bold !important;
+    border: none !important;
+    border-right: 1px solid white !important;
+    background: #005cb4 !important; /* Old browsers */
+    background: -moz-linear-gradient(top,  #005cb4 0%, #2989d8 50%, #207cca 51%, #00a3d9 100%) !important; /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#005cb4), color-stop(50%,#2989d8), color-stop(51%,#207cca), color-stop(100%,#00a3d9)) !important; /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #005cb4 0%,#2989d8 50%,#207cca 51%,#00a3d9 100%) !important; /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #005cb4 0%,#2989d8 50%,#207cca 51%,#00a3d9 100%) !important; /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #005cb4 0%,#2989d8 50%,#207cca 51%,#00a3d9 100%) !important; /* IE10+ */
+    background: linear-gradient(to bottom,  #005cb4 0%,#2989d8 50%,#207cca 51%,#00a3d9 100%) !important; /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#005cb4', endColorstr='#00a3d9',GradientType=0 ) !important; /* IE6-9 */
+}
+/****************************** PANEL *******************************/
+.ui-panel {
+    padding: 0em !important;
+}
+.ui-panel .ui-panel-content {
+    border: 0;
+    background: none;
+    padding: 0em 0em !important;
+}
+
+/***************************** Dialogos *****************************/
+
+.ui-dialog .ui-dialog-titlebar {
+    opacity: 0.8;
+	background: url('/SistemaElectoralComunal/resources/img/backgroundMenu.png') repeat-x scroll 0% 0% transparent !important;
+	border: medium none !important;
+	height: 2vmax;
+	background-size: 100% 100% !important;
+	color: #FFF;
+	font-weight: bold;
+}
+
+.ui-dialog-content {
+/*     background: #DDEBF2 !important; */
+/*     border: #EEEEEE !important;  */
+	background: url('/SistemaElectoralComunal/resources/img/backgroundHeader.png') repeat-x scroll 0% 0%
+		transparent !important;
+	border: medium none !important;
+	background-size: 100% 100% !important;
+}
+
+.ui-dialog {
+    -webkit-border-radius: 12px !important;
+    -moz-border-radius: 12px !important;
+    border-radius: 12px !important;
+}
+
+
+.ui-widget-overlay {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background: #DDEBF2;
+    opacity: 0.5;
+}
+/**************************** Mensajes *******************************/
+/*.ui-messages-error-summary{
+    font-size: auto;
+}*/
+
+/****************************** Etiquetas ****************************/
+
+.ui-outputlabel, .ui-commandlink {
+    opacity: 0.8;
+}
+
+/****************************** Scroll Panel *************************/
+.ui-scrollpanel-vbar {
+    background: transparent !important;
+}
+
+.ui-scrollpanel-handle {
+    background: -moz-linear-gradient(left,  rgba(221,235,242,0.72) 0%, rgba(216,234,241,0.72) 1%, rgba(0,163,217,0.72) 48%, rgba(221,235,242,0.72) 100%) !important; /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(221,235,242,0.72)), color-stop(1%,rgba(216,234,241,0.72)), color-stop(48%,rgba(0,163,217,0.72)), color-stop(100%,rgba(221,235,242,0.72))) !important; /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left,  rgba(221,235,242,0.72) 0%,rgba(216,234,241,0.72) 1%,rgba(0,163,217,0.72) 48%,rgba(221,235,242,0.72) 100%) !important; /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left,  rgba(221,235,242,0.72) 0%,rgba(216,234,241,0.72) 1%,rgba(0,163,217,0.72) 48%,rgba(221,235,242,0.72) 100%) !important; /* Opera 11.10+ */
+    background: -ms-linear-gradient(left,  rgba(221,235,242,0.72) 0%,rgba(216,234,241,0.72) 1%,rgba(0,163,217,0.72) 48%,rgba(221,235,242,0.72) 100%) !important; /* IE10+ */
+    background: linear-gradient(to right,  rgba(221,235,242,0.72) 0%,rgba(216,234,241,0.72) 1%,rgba(0,163,217,0.72) 48%,rgba(221,235,242,0.72) 100%) !important; /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b8ddebf2', endColorstr='#b8ddebf2',GradientType=1 ) !important; /* IE6-9 */
+
+    border-radius: 155px 155px 155px 155px !important;
+    -moz-border-radius: 155px 155px 155px 155px !important;
+    -webkit-border-radius: 155px 155px 155px 155px !important;
+    border: 0px solid #000000 !important;
+}
+.ui-scrollpanel .ui-scrollpanel-handle .ui-icon .ui-icon-grip-solid-horizontal {
+    background-image: none !important;
+}
+
+/************************************************ dataTable************************************************************/
+.dataTableHeader .ui-panel-titlebar {
+    background: #EEEEEE !important;
+    font-family: Roboto Slab !important;
+    font-weight: bold !important;
+    color: #000000 !important;
+    font-size: 13px !important;
+    opacity: 0.8 !important;
+}
+.ui-datatable-header {
+    text-align: center !important;
+}
+
+.ui-datatable .ui-chkbox .ui-chkbox-box {
+    border: 1px #CCCCCC solid !important;
+}
+.ui-datatable .ui-state-default {
+    font-family: Helvetica !important;
+    /*color: #000000 !important;*/
+    font-size: small !important;
+    border: 0px !important;
+    border-bottom: 1px #CCCCCC solid !important;
+}
+.ui-datatable .ui-column-filter {
+    background: #FFFFFF !important;
+    border: 1px #CCCCCC solid !important;
+}
+.ui-datatable tr td {
+    border: 0px !important;
+}
+.ui-datatable td {
+    color: #000000 !important;
+    opacity: 0.8 !important;
+    text-align: center !important;
+}
+
+.ui-datatable .ui-state-highlight {
+    background: #263356 !important;
+    color: #FFFFFF !important;
+    border-radius: 1px !important;
+}
+.ui-datatable-data tr.ui-datatable-even:hover,.ui-datatable-data tr.ui-datatable-odd:hover { 
+    background: #263356 !important; 
+    color: #FFFFFF !important;
+    border-radius: 1px !important;
+}
+.ui-datatable td:hover{
+    color: #FFFFFF !important;
+    background: #263356 !important; 
+}
+
+.footerPrograms .ui-datatable-footer { /*para los botones que estan en el footer de los dataTable*/
+    border: none !important;
+    border-top: 1px gray solid !important;
+    text-align: right !important;
+    padding-top: 0px !important;
+    padding-right: 0px !important;
+    color: #FFFFFF !important;
+}
+.ui-datatable .ui-paginator-page {
+    color: #FFFFFF !important;
+    font-family: Roboto Slab !important;
+}
+.ui-paginator-page { /*para la paginaion de los dataTable*/
+    background: #00a3d9 !important;
+}
+.ui-datatable-odd { /*para poner estilo cebra los dataTable*/
+    background: none repeat scroll 0 0 #F2F5F9;
+}
+/************************************************* selectOneMenu****************************************************/
+.ui-selectonemenu-trigger{
+    background: #FFFFFF !important;
+    border: 1px solid #CCCCCC !important;
+    border-radius: 0px !important;
+    height: 93% !important;
+}
+.ui-selectonemenu-label{
+    font-family: Roboto Slab !important;
+    font-size: small !important;
+    color: #00ADEE !important;
+    font-weight: lighter !important;
+    border-radius: 0px !important;
+    border: 1px solid #CCCCCC !important;
+}
+.ui-selectonemenu-items {
+    font-family: Roboto Slab !important;
+    font-size: small !important;
+    color: #00ADEE !important;
+    font-weight: lighter !important;
+}
+.ui-selectonemenu-item:hover { /*efecto sobre los select one menu*/
+    background: #EEEEEE !important; /*GRIS CLARO*/
+    color: #3A5770 !important;
+    border-radius: 1px !important;
+}
+.ui-selectonemenu-items-wrapper {
+    background: #FFFFFF !important;
+    height: auto !important;
+}
+.ui-selectonemenu-filter{
+    background: #FFFFFF !important;
+    border: 1px #CCCCCC solid !important;
+    width: 14.8em !important;
+}
+.ui-selectonemenu-panel{
+    background: #FFFFFF !important;
+    border: 1px #CCCCCC solid !important;
+    width: 19em !important; /*tamaño del despleglable*/
+    height: auto !important;
+}
+/************************************************ selectCheckBoxMenu*************************************************/
+.ui-state-highlight {
+    background: transparent !important;
+}
+.ui-state-default {
+    text-decoration: none !important;
+}
+.ui-selectcheckboxmenu-trigger {
+    background: #FFFFFF !important;
+    border: 1px solid #CCCCCC !important;
+    border-radius: 0px !important;
+    height: 92% !important;
+}
+.ui-selectcheckboxmenu .ui-selectcheckboxmenu-label {
+    padding: 3px 26px 5px 5px !important;
+}
+.ui-selectcheckboxmenu-label{
+    background: #FFFFFF !important;
+    font-family: Roboto Slab !important;
+    font-size: small !important;
+    color: #00ADEE !important;
+    font-weight: lighter !important;
+    /*box-shadow: 0px 2px 2px #CCCCCC inset !important;*/
+    border-radius: 0px !important;
+    text-decoration: none !important;
+    border: 1px solid #CCCCCC !important;
+}
+.ui-selectcheckboxmenu-label:hover {
+    color: #3A5770 !important;
+}
+.ui-selectcheckboxmenu-items{
+    font-family: Roboto Slab !important;
+    font-size: small !important;
+    color: #00ADEE !important;
+    font-weight: lighter !important;
+}
+.ui-selectcheckboxmenu-item:hover {
+    background: #EEEEEE !important; /*GRIS CLARO*/
+    color: #3A5770 !important;
+    border-radius: 1px !important;
+}
+.ui-selectcheckboxmenu-items-wrapper {
+    height: auto !important;
+}
+.ui-selectcheckboxmenu-panel {
+    background: #FFFFFF !important;
+    width: 19em !important;
+    height: auto !important;
+}
+.ui-chkbox-box{
+    background: #FFFFFF !important;
+    border: 1px solid #CCCCCC !important;
+}
+.ui-selectcheckboxmenu-filter-container{
+    border: 1px solid #CCCCCC !important;
+}
+
+/********************************************** Tab View ***************************/
+.ui-tabs-nav {
+    border: none !important;
+    background: #00a3d9 !important;
+}
+.ui-tabs-nav li {
+    border: 0px !important;
+    border-right: 1px solid white !important;
+    background: #00a3d9 !important;    
+    height: 2em !important;
+    float: left;
+    list-style: none outside none;
+    padding: 0px;
+    position: relative;
+    white-space: normal; 
+    border-radius: 0px !important;
+    top: -1.5px !important;
+    margin: 0px !important;
+    margin-top: 0px !important;
+}
+
+.ui-tabs-nav li a {
+    color: white !important;
+    font-family: Roboto Slab !important;
+    font-weight: lighter !important;
+    font-size: 1em !important;
+    text-align: center !important;
+}
+.ui-tabs.ui-tabs-top .ui-tabs-nav li.ui-tabs-selected {
+    border: 0px !important;
+    border-right: 1px solid white !important;
+    background: #005cb4 !important; /* Old browsers */
+    background: -moz-linear-gradient(top,  #005cb4 0%, #2989d8 50%, #207cca 51%, #00a3d9 100%) !important; /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#005cb4), color-stop(50%,#2989d8), color-stop(51%,#207cca), color-stop(100%,#00a3d9)) !important; /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #005cb4 0%,#2989d8 50%,#207cca 51%,#00a3d9 100%) !important; /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #005cb4 0%,#2989d8 50%,#207cca 51%,#00a3d9 100%) !important; /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #005cb4 0%,#2989d8 50%,#207cca 51%,#00a3d9 100%) !important; /* IE10+ */
+    background: linear-gradient(to bottom,  #005cb4 0%,#2989d8 50%,#207cca 51%,#00a3d9 100%) !important; /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#005cb4', endColorstr='#00a3d9',GradientType=0 ) !important; /* IE6-9 */
+}
+.ui-tabs-nav .ui-state-default {
+    border-top: 0px !important;
+}
+
+.ui-tabs .ui-tabs-nav .ui-tabs-selected {
+    border: 1px solid #A8A8A8;
+}
+
+.ui-tabs .ui-tabs-navscroller {
+    overflow: visible !important;
+}
+.ui-tabs-navscroller .ui-tabs-nav .ui-tabs-selected:after {
+    display: block !important;
+    content: ' ' !important;
+    height: 0!important;
+    position: absolute !important;
+    width: 0 !important;
+    border-width: 17px !important;
+    border: 13px solid transparent !important;
+    border-top-color: #00A2D9 !important;
+    top: 100% !important;
+    left: 45% !important;
+    margin-left: -10px !important;
+}
+.ui-tabs-navscroller .ui-tabs-selected:after {
+    display: block !important;
+    content: ' ' !important;
+    height: 0!important;
+    position: absolute !important;
+    width: 0 !important;
+    border-width: 17px !important;
+    border: 10px solid transparent !important;
+    border-top-color: #00A2D9 !important;
+    top: 100% !important;
+    left: 45% !important;
+    margin-left: -10px !important;
+}
+.ui-tabs-navscroller-btn-left {
+    display: inline !important;
+    background: none repeat scroll 0% 0% transparent !important;
+    background: #BDBDBD !important;
+    opacity: 0.8;
+    border: 1px solid !important;
+    border-radius: 0px !important;
+    height: 100% !important;
+    border: 0px !important;
+    top: 0px !important;
+    left: 0px !important;
+}
+.ui-tabs-navscroller-btn-left:hover, .ui-tabs-navscroller-btn-right:hover {
+    background: #E6E6E6 !important;
+}
+.ui-tabs .ui-tabs-navscroller-btn-left .ui-icon {
+    margin-top: 10px !important;
+}
+.ui-tabs-navscroller-btn-right {
+    display: inline-flex !important;
+    height: 100% !important;
+    background: none repeat scroll 0% 0% transparent !important;
+    background: #BDBDBD !important;
+    opacity: 0.8;
+    border: 0px solid !important;
+    border-radius: 0px !important;
+    top: 0px !important;
+    right: 0px !important;
+}
+.ui-tabs .ui-tabs-navscroller-btn-right .ui-icon { 
+    margin-top: 10px !important;
+}
+.ui-tabs-scrollable .ui-tabs-nav {
+    width: 100%!important;
+    margin-left: -0.3em;
+}
+.ui-tabs .ui-tabs-panel {
+    padding: 1em 0.4em !important;
+}
+
+
+/************************************ OJO ************************/
+
+a:-webkit-any-link {
+    text-decoration: none !important; /*Para quitar el subrayado de los link del navegador*/
+}
