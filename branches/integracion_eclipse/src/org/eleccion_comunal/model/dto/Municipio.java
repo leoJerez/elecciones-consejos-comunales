@@ -6,103 +6,95 @@ import javax.persistence.*;
 
 import java.util.List;
 
-
 /**
  * The persistent class for the municipio database table.
  * 
  */
 @Entity
-@NamedQuery(name="Municipio.findAll", query="SELECT m FROM Municipio m")
+@NamedQuery(name = "Municipio.findAll", query = "SELECT m FROM Municipio m")
 public class Municipio extends EntidadGenerica implements Serializable {
-	private static final long serialVersionUID = 1L;
-	private Integer idMunicipio;
-	private String nombre;
-	private Estado estado;
-	private List<Parroquia> parroquias;
+    private static final long serialVersionUID = 1L;
+    private Integer idMunicipio;
+    private String nombre;
+    private Estado estado;
+    private List<Parroquia> parroquias;
 
-	public Municipio() {
-	}
+    public Municipio() {
+    }
 
+    @Id
+    @SequenceGenerator(name = "MunicipioSequence", sequenceName = "municipio_id_municipio_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MunicipioSequence")
+    @Column(name = "id_municipio")
+    public Integer getIdMunicipio() {
+	return this.idMunicipio;
+    }
 
-	@Id
-	@SequenceGenerator(name="MUNICIPIO_IDMUNICIPIO_GENERATOR", sequenceName = "municipio_id_municipio_seq", allocationSize=1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="MUNICIPIO_IDMUNICIPIO_GENERATOR")
-	@Column(name="id_municipio")
-	public Integer getIdMunicipio() {
-		return this.idMunicipio;
-	}
+    public void setIdMunicipio(Integer idMunicipio) {
+	this.idMunicipio = idMunicipio;
+    }
 
-	public void setIdMunicipio(Integer idMunicipio) {
-		this.idMunicipio = idMunicipio;
-	}
+    public String getNombre() {
+	return this.nombre;
+    }
 
+    public void setNombre(String nombre) {
+	this.nombre = nombre;
+    }
 
-	public String getNombre() {
-		return this.nombre;
-	}
+    public String getStatus() {
+	return this.status;
+    }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+    public void setStatus(String status) {
+	this.status = status;
+    }
 
+    // bi-directional many-to-one association to Estado
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_estado")
+    public Estado getEstado() {
+	return this.estado;
+    }
 
-	public String getStatus() {
-		return this.status;
-	}
+    public void setEstado(Estado estado) {
+	this.estado = estado;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    // bi-directional many-to-one association to Parroquia
+    @OneToMany(mappedBy = "municipio")
+    public List<Parroquia> getParroquias() {
+	return this.parroquias;
+    }
 
+    public void setParroquias(List<Parroquia> parroquias) {
+	this.parroquias = parroquias;
+    }
 
-	//bi-directional many-to-one association to Estado
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="id_estado")
-	public Estado getEstado() {
-		return this.estado;
-	}
+    public Parroquia addParroquia(Parroquia parroquia) {
+	getParroquias().add(parroquia);
+	parroquia.setMunicipio(this);
 
-	public void setEstado(Estado estado) {
-		this.estado = estado;
-	}
+	return parroquia;
+    }
 
+    public Parroquia removeParroquia(Parroquia parroquia) {
+	getParroquias().remove(parroquia);
+	parroquia.setMunicipio(null);
 
-	//bi-directional many-to-one association to Parroquia
-	@OneToMany(mappedBy="municipio")
-	public List<Parroquia> getParroquias() {
-		return this.parroquias;
-	}
+	return parroquia;
+    }
 
-	public void setParroquias(List<Parroquia> parroquias) {
-		this.parroquias = parroquias;
-	}
+    @Override
+    public Object getPrimaryKey() {
+	// TODO Auto-generated method stub
+	return null;
+    }
 
-	public Parroquia addParroquia(Parroquia parroquia) {
-		getParroquias().add(parroquia);
-		parroquia.setMunicipio(this);
-
-		return parroquia;
-	}
-
-	public Parroquia removeParroquia(Parroquia parroquia) {
-		getParroquias().remove(parroquia);
-		parroquia.setMunicipio(null);
-
-		return parroquia;
-	}
-
-
-	@Override
-	public Object getPrimaryKey() {
-	    // TODO Auto-generated method stub
-	    return null;
-	}
-
-
-	@Override
-	public String toString() {
-	    // TODO Auto-generated method stub
-	    return null;
-	}
+    @Override
+    public String toString() {
+	// TODO Auto-generated method stub
+	return null;
+    }
 
 }

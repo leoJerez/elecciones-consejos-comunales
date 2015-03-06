@@ -6,174 +6,149 @@ import javax.persistence.*;
 
 import java.util.List;
 
-
 /**
  * The persistent class for the cargo database table.
  * 
  */
 @Entity
-@NamedQuery(name="Cargo.findAll", query="SELECT c FROM Cargo c")
+@NamedQuery(name = "Cargo.findAll", query = "SELECT c FROM Cargo c")
 public class Cargo extends EntidadGenerica implements Serializable {
-	private static final long serialVersionUID = 1L;
-	private Integer idCargo;
-	private String descripcion;
-	private double duracionPeriodo;
-	private Integer minimoEdadPostulante;
-	private String nombre;
-	private List<Candidato> candidatos;
-	private List<ConsejoComunal> consejoComunals;
-	private List<MiembrosConsejo> miembrosConsejos;
+    private static final long serialVersionUID = 1L;
+    private Integer idCargo;
+    private String descripcion;
+    private double duracionPeriodo;
+    private Integer minimoEdadPostulante;
+    private String nombre;
+    private List<Candidato> candidatos;
+    private ConsejoComunal consejoComunal;
+    private List<MiembrosConsejo> miembrosConsejos;
 
-	public Cargo() {
-	}
+    public Cargo() {
+    }
 
+    @Id
+    @SequenceGenerator(name = "CargoSequence", sequenceName = "cargo_id_cargo_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CargoSequence")
+    @Column(name = "id_cargo")
+    public Integer getIdCargo() {
+	return this.idCargo;
+    }
 
-	@Id
-	@SequenceGenerator(name="CARGO_IDCARGO_GENERATOR", sequenceName = "cargo_id_cargo_seq", allocationSize=1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CARGO_IDCARGO_GENERATOR")
-	@Column(name="id_cargo")
-	public Integer getIdCargo() {
-		return this.idCargo;
-	}
+    public void setIdCargo(Integer idCargo) {
+	this.idCargo = idCargo;
+    }
 
-	public void setIdCargo(Integer idCargo) {
-		this.idCargo = idCargo;
-	}
+    public String getDescripcion() {
+	return this.descripcion;
+    }
 
+    public void setDescripcion(String descripcion) {
+	this.descripcion = descripcion;
+    }
 
-	public String getDescripcion() {
-		return this.descripcion;
-	}
+    @Column(name = "duracion_periodo")
+    public double getDuracionPeriodo() {
+	return this.duracionPeriodo;
+    }
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
+    public void setDuracionPeriodo(double duracionPeriodo) {
+	this.duracionPeriodo = duracionPeriodo;
+    }
 
+    @Column(name = "minimo_edad_postulante")
+    public Integer getMinimoEdadPostulante() {
+	return this.minimoEdadPostulante;
+    }
 
-	@Column(name="duracion_periodo")
-	public double getDuracionPeriodo() {
-		return this.duracionPeriodo;
-	}
+    public void setMinimoEdadPostulante(Integer minimoEdadPostulante) {
+	this.minimoEdadPostulante = minimoEdadPostulante;
+    }
 
-	public void setDuracionPeriodo(double duracionPeriodo) {
-		this.duracionPeriodo = duracionPeriodo;
-	}
+    public String getNombre() {
+	return this.nombre;
+    }
 
+    public void setNombre(String nombre) {
+	this.nombre = nombre;
+    }
 
-	@Column(name="minimo_edad_postulante")
-	public Integer getMinimoEdadPostulante() {
-		return this.minimoEdadPostulante;
-	}
+    public String getStatus() {
+	return this.status;
+    }
 
-	public void setMinimoEdadPostulante(Integer minimoEdadPostulante) {
-		this.minimoEdadPostulante = minimoEdadPostulante;
-	}
+    public void setStatus(String status) {
+	this.status = status;
+    }
 
+    // bi-directional many-to-one association to Candidato
+    @OneToMany(mappedBy = "cargo")
+    public List<Candidato> getCandidatos() {
+	return this.candidatos;
+    }
 
-	public String getNombre() {
-		return this.nombre;
-	}
+    public void setCandidatos(List<Candidato> candidatos) {
+	this.candidatos = candidatos;
+    }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+    public Candidato addCandidato(Candidato candidato) {
+	getCandidatos().add(candidato);
+	candidato.setCargo(this);
 
+	return candidato;
+    }
 
-	public String getStatus() {
-		return this.status;
-	}
+    public Candidato removeCandidato(Candidato candidato) {
+	getCandidatos().remove(candidato);
+	candidato.setCargo(null);
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+	return candidato;
+    }
 
+    // bi-directional many-to-one association to ConsejoComunal
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_consejo_comunal")
+    public ConsejoComunal getConsejoComunal() {
+	return this.consejoComunal;
+    }
 
-	//bi-directional many-to-one association to Candidato
-	@OneToMany(mappedBy="cargo")
-	public List<Candidato> getCandidatos() {
-		return this.candidatos;
-	}
+    public void setConsejoComunal(ConsejoComunal consejoComunal) {
+	this.consejoComunal = consejoComunal;
+    }
 
-	public void setCandidatos(List<Candidato> candidatos) {
-		this.candidatos = candidatos;
-	}
+    // bi-directional many-to-one association to MiembrosConsejo
+    @OneToMany(mappedBy = "cargo")
+    public List<MiembrosConsejo> getMiembrosConsejos() {
+	return this.miembrosConsejos;
+    }
 
-	public Candidato addCandidato(Candidato candidato) {
-		getCandidatos().add(candidato);
-		candidato.setCargo(this);
+    public void setMiembrosConsejos(List<MiembrosConsejo> miembrosConsejos) {
+	this.miembrosConsejos = miembrosConsejos;
+    }
 
-		return candidato;
-	}
+    public MiembrosConsejo addMiembrosConsejo(MiembrosConsejo miembrosConsejo) {
+	getMiembrosConsejos().add(miembrosConsejo);
+	miembrosConsejo.setCargo(this);
 
-	public Candidato removeCandidato(Candidato candidato) {
-		getCandidatos().remove(candidato);
-		candidato.setCargo(null);
+	return miembrosConsejo;
+    }
 
-		return candidato;
-	}
+    public MiembrosConsejo removeMiembrosConsejo(MiembrosConsejo miembrosConsejo) {
+	getMiembrosConsejos().remove(miembrosConsejo);
+	miembrosConsejo.setCargo(null);
 
+	return miembrosConsejo;
+    }
 
-	//bi-directional many-to-one association to ConsejoComunal
-	@OneToMany(mappedBy="cargo")
-	public List<ConsejoComunal> getConsejoComunals() {
-		return this.consejoComunals;
-	}
+    @Override
+    public Object getPrimaryKey() {
+	// TODO Auto-generated method stub
+	return null;
+    }
 
-	public void setConsejoComunals(List<ConsejoComunal> consejoComunals) {
-		this.consejoComunals = consejoComunals;
-	}
-
-	public ConsejoComunal addConsejoComunal(ConsejoComunal consejoComunal) {
-		getConsejoComunals().add(consejoComunal);
-		consejoComunal.setCargo(this);
-
-		return consejoComunal;
-	}
-
-	public ConsejoComunal removeConsejoComunal(ConsejoComunal consejoComunal) {
-		getConsejoComunals().remove(consejoComunal);
-		consejoComunal.setCargo(null);
-
-		return consejoComunal;
-	}
-
-
-	//bi-directional many-to-one association to MiembrosConsejo
-	@OneToMany(mappedBy="cargo")
-	public List<MiembrosConsejo> getMiembrosConsejos() {
-		return this.miembrosConsejos;
-	}
-
-	public void setMiembrosConsejos(List<MiembrosConsejo> miembrosConsejos) {
-		this.miembrosConsejos = miembrosConsejos;
-	}
-
-	public MiembrosConsejo addMiembrosConsejo(MiembrosConsejo miembrosConsejo) {
-		getMiembrosConsejos().add(miembrosConsejo);
-		miembrosConsejo.setCargo(this);
-
-		return miembrosConsejo;
-	}
-
-	public MiembrosConsejo removeMiembrosConsejo(MiembrosConsejo miembrosConsejo) {
-		getMiembrosConsejos().remove(miembrosConsejo);
-		miembrosConsejo.setCargo(null);
-
-		return miembrosConsejo;
-	}
-
-
-	@Override
-	public Object getPrimaryKey() {
-	    // TODO Auto-generated method stub
-	    return null;
-	}
-
-
-	@Override
-	public String toString() {
-	    // TODO Auto-generated method stub
-	    return null;
-	}
+    @Override
+    public String toString() {
+	// TODO Auto-generated method stub
+	return null;
+    }
 
 }
