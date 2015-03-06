@@ -6,178 +6,188 @@ import javax.persistence.*;
 
 import java.util.List;
 
-
 /**
  * The persistent class for the vivienda database table.
  * 
  */
 @Entity
-@NamedQuery(name="Vivienda.findAll", query="SELECT v FROM Vivienda v")
+@NamedQuery(name = "Vivienda.findAll", query = "SELECT v FROM Vivienda v")
 public class Vivienda extends EntidadGenerica implements Serializable {
-	private static final long serialVersionUID = 1L;
-	private Integer idVivienda;
-	private String calle;
-	private String cantidadBagnos;
-	private String cantidadHabitaciones;
-	private String carrera;
-	private String codigoPosteCercano;
-	private String manzana;
-	private String nombreCasa;
-	private String numeroCasa;
-	private List<VecinoVivienda> vecinoViviendas;
-	private ConsejoComunal consejoComunal;
+    private static final long serialVersionUID = 1L;
+    private Integer idVivienda;
+    private String calle;
+    private String cantidadBannos;
+    private String cantidadHabitaciones;
+    private String carrera;
+    private String codigoPosteCercano;
+    private String manzana;
+    private String nombreCasa;
+    private String numeroCasa;
+    private List<VecinoVivienda> vecinoViviendas;
+    private List<VehiculoVivienda> vehiculoViviendas;
+    private ConsejoComunal consejoComunal;
 
-	public Vivienda() {
-	}
+    public Vivienda() {
+    }
 
+    @Id
+    @SequenceGenerator(name = "ViviendaSequence", sequenceName = "vivienda_id_vivienda_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ViviendaSequence")
+    @Column(name = "id_vivienda")
+    public Integer getIdVivienda() {
+	return this.idVivienda;
+    }
 
-	@Id
-	@SequenceGenerator(name="VIVIENDA_IDVIVIENDA_GENERATOR", sequenceName = "vivienda_id_vivienda_seq", allocationSize=1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="VIVIENDA_IDVIVIENDA_GENERATOR")
-	@Column(name="id_vivienda")
-	public Integer getIdVivienda() {
-		return this.idVivienda;
-	}
+    public void setIdVivienda(Integer idVivienda) {
+	this.idVivienda = idVivienda;
+    }
 
-	public void setIdVivienda(Integer idVivienda) {
-		this.idVivienda = idVivienda;
-	}
+    public String getCalle() {
+	return this.calle;
+    }
 
+    public void setCalle(String calle) {
+	this.calle = calle;
+    }
 
-	public String getCalle() {
-		return this.calle;
-	}
+    @Column(name = "cantidad_bannos")
+    public String getCantidadBannos() {
+	return this.cantidadBannos;
+    }
 
-	public void setCalle(String calle) {
-		this.calle = calle;
-	}
+    public void setCantidadBannos(String cantidadBannos) {
+	this.cantidadBannos = cantidadBannos;
+    }
 
+    @Column(name = "cantidad_habitaciones")
+    public String getCantidadHabitaciones() {
+	return this.cantidadHabitaciones;
+    }
 
-	@Column(name="cantidad_bagnos")
-	public String getCantidadBagnos() {
-		return this.cantidadBagnos;
-	}
+    public void setCantidadHabitaciones(String cantidadHabitaciones) {
+	this.cantidadHabitaciones = cantidadHabitaciones;
+    }
 
-	public void setCantidadBagnos(String cantidadBagnos) {
-		this.cantidadBagnos = cantidadBagnos;
-	}
+    public String getCarrera() {
+	return this.carrera;
+    }
 
+    public void setCarrera(String carrera) {
+	this.carrera = carrera;
+    }
 
-	@Column(name="cantidad_habitaciones")
-	public String getCantidadHabitaciones() {
-		return this.cantidadHabitaciones;
-	}
+    @Column(name = "codigo_poste_cercano")
+    public String getCodigoPosteCercano() {
+	return this.codigoPosteCercano;
+    }
 
-	public void setCantidadHabitaciones(String cantidadHabitaciones) {
-		this.cantidadHabitaciones = cantidadHabitaciones;
-	}
+    public void setCodigoPosteCercano(String codigoPosteCercano) {
+	this.codigoPosteCercano = codigoPosteCercano;
+    }
 
+    public String getManzana() {
+	return this.manzana;
+    }
 
-	public String getCarrera() {
-		return this.carrera;
-	}
+    public void setManzana(String manzana) {
+	this.manzana = manzana;
+    }
 
-	public void setCarrera(String carrera) {
-		this.carrera = carrera;
-	}
+    @Column(name = "nombre_casa")
+    public String getNombreCasa() {
+	return this.nombreCasa;
+    }
 
+    public void setNombreCasa(String nombreCasa) {
+	this.nombreCasa = nombreCasa;
+    }
 
-	@Column(name="codigo_poste_cercano")
-	public String getCodigoPosteCercano() {
-		return this.codigoPosteCercano;
-	}
+    @Column(name = "numero_casa")
+    public String getNumeroCasa() {
+	return this.numeroCasa;
+    }
 
-	public void setCodigoPosteCercano(String codigoPosteCercano) {
-		this.codigoPosteCercano = codigoPosteCercano;
-	}
+    public void setNumeroCasa(String numeroCasa) {
+	this.numeroCasa = numeroCasa;
+    }
 
+    public String getStatus() {
+	return this.status;
+    }
 
-	public String getManzana() {
-		return this.manzana;
-	}
+    public void setStatus(String status) {
+	this.status = status;
+    }
 
-	public void setManzana(String manzana) {
-		this.manzana = manzana;
-	}
+    // bi-directional many-to-one association to VecinoVivienda
+    @OneToMany(mappedBy = "vivienda")
+    public List<VecinoVivienda> getVecinoViviendas() {
+	return this.vecinoViviendas;
+    }
 
+    public void setVecinoViviendas(List<VecinoVivienda> vecinoViviendas) {
+	this.vecinoViviendas = vecinoViviendas;
+    }
 
-	@Column(name="nombre_casa")
-	public String getNombreCasa() {
-		return this.nombreCasa;
-	}
+    public VecinoVivienda addVecinoVivienda(VecinoVivienda vecinoVivienda) {
+	getVecinoViviendas().add(vecinoVivienda);
+	vecinoVivienda.setVivienda(this);
 
-	public void setNombreCasa(String nombreCasa) {
-		this.nombreCasa = nombreCasa;
-	}
+	return vecinoVivienda;
+    }
 
+    public VecinoVivienda removeVecinoVivienda(VecinoVivienda vecinoVivienda) {
+	getVecinoViviendas().remove(vecinoVivienda);
+	vecinoVivienda.setVivienda(null);
 
-	@Column(name="numero_casa")
-	public String getNumeroCasa() {
-		return this.numeroCasa;
-	}
+	return vecinoVivienda;
+    }
 
-	public void setNumeroCasa(String numeroCasa) {
-		this.numeroCasa = numeroCasa;
-	}
+    // bi-directional many-to-one association to VehiculoVivienda
+    @OneToMany(mappedBy = "vivienda")
+    public List<VehiculoVivienda> getVehiculoViviendas() {
+	return this.vehiculoViviendas;
+    }
 
+    public void setVehiculoViviendas(List<VehiculoVivienda> vehiculoViviendas) {
+	this.vehiculoViviendas = vehiculoViviendas;
+    }
 
-	public String getStatus() {
-		return this.status;
-	}
+    public VehiculoVivienda addVehiculoVivienda(VehiculoVivienda vehiculoVivienda) {
+	getVehiculoViviendas().add(vehiculoVivienda);
+	vehiculoVivienda.setVivienda(this);
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+	return vehiculoVivienda;
+    }
 
+    public VehiculoVivienda removeVehiculoVivienda(VehiculoVivienda vehiculoVivienda) {
+	getVehiculoViviendas().remove(vehiculoVivienda);
+	vehiculoVivienda.setVivienda(null);
 
-	//bi-directional many-to-one association to VecinoVivienda
-	@OneToMany(mappedBy="vivienda")
-	public List<VecinoVivienda> getVecinoViviendas() {
-		return this.vecinoViviendas;
-	}
+	return vehiculoVivienda;
+    }
 
-	public void setVecinoViviendas(List<VecinoVivienda> vecinoViviendas) {
-		this.vecinoViviendas = vecinoViviendas;
-	}
+    // bi-directional many-to-one association to ConsejoComunal
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_consejo_comunal")
+    public ConsejoComunal getConsejoComunal() {
+	return this.consejoComunal;
+    }
 
-	public VecinoVivienda addVecinoVivienda(VecinoVivienda vecinoVivienda) {
-		getVecinoViviendas().add(vecinoVivienda);
-		vecinoVivienda.setVivienda(this);
+    public void setConsejoComunal(ConsejoComunal consejoComunal) {
+	this.consejoComunal = consejoComunal;
+    }
 
-		return vecinoVivienda;
-	}
+    @Override
+    public Object getPrimaryKey() {
+	// TODO Auto-generated method stub
+	return null;
+    }
 
-	public VecinoVivienda removeVecinoVivienda(VecinoVivienda vecinoVivienda) {
-		getVecinoViviendas().remove(vecinoVivienda);
-		vecinoVivienda.setVivienda(null);
-
-		return vecinoVivienda;
-	}
-
-
-	//bi-directional many-to-one association to ConsejoComunal
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="id_consejo_comunal")
-	public ConsejoComunal getConsejoComunal() {
-		return this.consejoComunal;
-	}
-
-	public void setConsejoComunal(ConsejoComunal consejoComunal) {
-		this.consejoComunal = consejoComunal;
-	}
-
-
-	@Override
-	public Object getPrimaryKey() {
-	    // TODO Auto-generated method stub
-	    return null;
-	}
-
-
-	@Override
-	public String toString() {
-	    // TODO Auto-generated method stub
-	    return null;
-	}
+    @Override
+    public String toString() {
+	// TODO Auto-generated method stub
+	return null;
+    }
 
 }

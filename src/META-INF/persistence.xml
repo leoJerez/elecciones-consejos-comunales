@@ -6,22 +6,26 @@
 		transaction-type="RESOURCE_LOCAL">
 
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-
-
 		<class>org.eleccion_comunal.model.dto.Candidato</class>
 		<class>org.eleccion_comunal.model.dto.Cargo</class>
+		<class>org.eleccion_comunal.model.dto.CargoEventoElectoral</class>
+		<class>org.eleccion_comunal.model.dto.CarteleraInformativa</class>
 		<class>org.eleccion_comunal.model.dto.ConsejoComunal</class>
 		<class>org.eleccion_comunal.model.dto.Eleccion</class>
 		<class>org.eleccion_comunal.model.dto.Estado</class>
 		<class>org.eleccion_comunal.model.dto.MesaElectoral</class>
 		<class>org.eleccion_comunal.model.dto.MiembrosConsejo</class>
+		<class>org.eleccion_comunal.model.dto.MiembrosMesa</class>
 		<class>org.eleccion_comunal.model.dto.Municipio</class>
 		<class>org.eleccion_comunal.model.dto.Parroquia</class>
 		<class>org.eleccion_comunal.model.dto.Rol</class>
 		<class>org.eleccion_comunal.model.dto.Usuario</class>
 		<class>org.eleccion_comunal.model.dto.Vecino</class>
 		<class>org.eleccion_comunal.model.dto.VecinoVivienda</class>
+		<class>org.eleccion_comunal.model.dto.Vehiculo</class>
+		<class>org.eleccion_comunal.model.dto.VehiculoVivienda</class>
 		<class>org.eleccion_comunal.model.dto.Vivienda</class>
+		<class>org.eleccion_comunal.model.dto.VotoCandidatoMesa</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
