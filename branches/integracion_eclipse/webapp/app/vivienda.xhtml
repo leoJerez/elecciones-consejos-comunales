@@ -69,7 +69,7 @@
 					</p:column>
 					<p:column headerText="Operaciones">
 						<p:commandButton title="Editar" icon="ui-icon-pencil"
-							action="#{viviendaViewBean.editarVivienda()}"
+							onclick="PF('editarVivienda').show();"
 							style="margin-left: 21%;">
 							<f:setPropertyActionListener value="#{vivienda}"
 								target="#{viviendaViewBean.viviendaSelected}" />
@@ -94,6 +94,7 @@
 						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 				</p:confirmDialog>
 			</p:panel>
+			<ui:include src="../app/dialogos/editarVivienda.xhtml" />
 		</h:form>
 	</ui:define>
 </ui:composition>
