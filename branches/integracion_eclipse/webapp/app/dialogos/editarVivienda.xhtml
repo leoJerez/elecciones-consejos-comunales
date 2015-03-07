@@ -8,11 +8,11 @@
 
 	<p:dialog widgetVar="editarVivienda" modal="true" closable="true"
 		header="Actualizar datos de la vivienda" position="top"
-		style="height: 37vw !important">
+		style="height: auto !important">
 		<p:panel id="pnlEditarVivienda"
-			style="width: 100%;height: 31vw;margin-top: -3%;margin-left: -0.62%;border: 0px;">
+			style="width: 100%;height: auto;margin-top: -3%;margin-left: -0.62%;border: 0px;">
 			<p:panel id="contenidoEditar"
-				style="margin-top: 6%;height: 30vw;width: 65vw;margin-left: 1%;border: 1px solid;">
+				style="margin-top: 6%;height: auto;width: 65vw;margin-left: 1%;border: 1px solid;">
 				<div style="width: 50%; float: left;">
 					<div style="float: left; margin-top: 1%; width: 75%">
 						<p:outputLabel value="Nro Casa:"
@@ -69,37 +69,49 @@
 							value="#{viviendaViewBean.viviendaSelected.codigoPosteCercano}"
 							style="margin-left: 14%;" disabled="true" />
 					</div>
+					<div style="float: left; margin-top: 1%; width: 75%">
+						<p:commandButton value="Vehiculo" icon="ui-icon-plus"
+							actionListener="#{viviendaViewBean.cargarPanelVehiculo()}"
+							update="contenidoEditar" style="margin-top: 4%;margin-left: 67%;" />
+					</div>
 				</div>
 				<div
 					style="float: left; align-content: center; width: 100%; margin-top: 2%;">
 					<p:outputLabel value="Datos de Vehiculo:"
 						style="font-family: Georgia,serif; font-size: 1.3em;margin-left: -5%;" />
-					<p:panel rendered="false" style="width: 80%;margin-left: 15%;">
+					<p:panel id="datosVehiculo"
+						visible="#{viviendaViewBean.agregarVehiculo}"
+						style="width: 80%;margin-left: 12%;">
 						<div
 							style="width: 100%; align-content: center; margin-left: 6%; margin-top: 1%; height: 5vw">
 							<div style="width: 17%; float: left">
 								<p:outputLabel value="Placa:"
 									style="font-family: Georgia,serif; font-size: 1.3em;margin-left: -5%;" />
-								<p:inputText value="#{viviendaViewBean.newVivienda}"
+								<p:inputText value="#{viviendaViewBean.nuevoVehiculo.placa}"
 									style="margin-left: 14%;width: 80%;" />
 							</div>
 							<div style="width: 17%; float: left">
 								<p:outputLabel value="Marca:"
 									style="font-family: Georgia,serif; font-size: 1.3em;margin-left: -5%;" />
-								<p:inputText value="#{viviendaViewBean.newVivienda}"
+								<p:inputText value="#{viviendaViewBean.nuevoVehiculo.marca}"
 									style="margin-left: 14%;width: 80%;" />
 							</div>
 							<div style="width: 17%; float: left">
 								<p:outputLabel value="Modelo:"
 									style="font-family: Georgia,serif; font-size: 1.3em;margin-left: -5%;" />
-								<p:inputText value="#{viviendaViewBean.newVivienda}"
+								<p:inputText value="#{viviendaViewBean.nuevoVehiculo.modelo}"
 									style="margin-left: 14%;width: 80%;" />
 							</div>
 							<div style="width: 17%; float: left">
 								<p:outputLabel value="Año:"
 									style="font-family: Georgia,serif; font-size: 1.3em;margin-left: -5%;" />
-								<p:inputText value="#{viviendaViewBean.newVivienda}"
+								<p:inputText value="#{viviendaViewBean.nuevoVehiculo.anno}"
 									style="margin-left: 14%;width: 80%;" />
+							</div>
+							<div style="width: 17%; float: left">
+								<p:commandButton value="Agregar" icon="ui-icon-check"
+									actionListener="#{viviendaViewBean.agregarVehiculo()}"
+									update="contenidoEditar" style="margin-top: 23%;" />
 							</div>
 						</div>
 					</p:panel>
@@ -121,27 +133,36 @@
 								<p:outputLabel value="#{propiedad.vehiculo.anno}" />
 							</p:column>
 							<p:column headerText="Operaciones">
-								<p:commandButton title="Editar" icon="ui-icon-pencil"
-									onclick="PF('editarVivienda').show();">
-									<f:setPropertyActionListener value="#{vivienda}"
-										target="#{viviendaViewBean.viviendaSelected}" />
-								</p:commandButton>
 								<p:commandButton title="Eliminar"
-									action="#{viviendaViewBean.eliminarVivienda()}"
+									action="#{viviendaViewBean.eliminarVehiculo()}"
 									icon="ui-icon-trash">
-									<f:setPropertyActionListener value="#{vivienda}"
-										target="#{viviendaViewBean.viviendaSelected}" />
+									<f:setPropertyActionListener value="#{propiedad}"
+										target="#{viviendaViewBean.vehiculoSelected}" />
 									<p:confirm header="Confirmar Acción"
-										message="Estas Seguro que desea eliminar la vivienda?"
+										message="¿Seguro que desea eliminar el vehiculo?"
 										icon="ui-icon-alert" />
 								</p:commandButton>
 							</p:column>
 						</p:dataTable>
+						<p:confirmDialog global="true" showEffect="fade"
+							hideEffect="explode">
+							<p:commandButton value="Si"
+								styleClass="ui-confirmdialog-yes" icon="ui-icon-check"
+								style="margin-left: 28%;" update="growl" />
+							<p:commandButton value="No" 
+								styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+						</p:confirmDialog>
 					</div>
 				</div>
-				<p:commandButton value="Guardar"
-					actionListener="#{viviendaViewBean.editarVivienda()}"
-					update="listaPrueba" />
+				<div
+					style="float: left; align-content: center; width: 100%; margin-top: 2%;">
+					<p:commandButton value="Finalizar"
+						actionListener="#{viviendaViewBean.editarVivienda()}"
+						update="listaPrueba" style="margin-top: 4%;margin-left: 61%;" />
+					<p:commandButton value="Cancelar" update="listaPrueba"
+						oncomplete="PF('editarVivienda').hide()" style="margin-top: 4%;" />
+				</div>
+
 			</p:panel>
 		</p:panel>
 	</p:dialog>
