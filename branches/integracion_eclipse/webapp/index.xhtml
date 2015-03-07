@@ -16,7 +16,6 @@
 				<ui:include src="/portal/utils/carouselNoticias.xhtml" />
 
 				<p:panel styleClass="contenedorFunciones">
-					<!-- 					<p:commandLink> -->
 					<p:panel styleClass="panelFuncion panelFuncionPrimero">
 						<p:panel styleClass="panelFuncionSinHover">
 							<p:graphicImage url="../resources/img/index/schedule.png"
@@ -31,14 +30,10 @@
 								actionListener="#{principalRequestBean.redireccionar('/faces/app/habitanteCRUD.xhtml')}" />
 							<p:commandLink value="Datos de Viviendas" styleClass="enlaceActualizarDatos"
 								actionListener="#{principalRequestBean.redireccionar('/faces/app/vivienda.xhtml')}" />
-							<!-- 								<p:outputLabel -->
-							<!-- 									value="Mantén al día la información de los vecinos" -->
-							<!-- 									styleClass="textoHoverFuncion" /> -->
 						</p:panel>
 					</p:panel>
-					<!-- 					</p:commandLink> -->
 
-					<p:commandLink>
+					<p:commandLink actionListener="#{principalRequestBean.redireccionar('/faces/portal/content/postulados.xhtml')}">
 						<p:panel styleClass="panelFuncion panelFuncionSegundo">
 							<p:panel styleClass="panelFuncionSinHover">
 								<p:graphicImage url="../resources/img/index/postularse.jpg"
