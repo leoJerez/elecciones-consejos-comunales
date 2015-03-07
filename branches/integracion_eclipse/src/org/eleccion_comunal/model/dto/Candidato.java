@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
-
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -67,6 +67,9 @@ public class Candidato extends EntidadGenerica implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_cargo")
     public Cargo getCargo() {
+	if (cargo == null) {
+	    cargo = new Cargo();
+	}
 	return this.cargo;
     }
 
@@ -78,6 +81,9 @@ public class Candidato extends EntidadGenerica implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id__eleccion")
     public Eleccion getEleccion() {
+	if (eleccion == null) {
+	    eleccion = new Eleccion();
+	}
 	return this.eleccion;
     }
 
@@ -89,6 +95,9 @@ public class Candidato extends EntidadGenerica implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_vecino")
     public Vecino getVecino() {
+	if (vecino == null) {
+	    vecino =  new Vecino();
+	}
 	return this.vecino;
     }
 
@@ -99,6 +108,9 @@ public class Candidato extends EntidadGenerica implements Serializable {
     // bi-directional many-to-one association to VotoCandidatoMesa
     @OneToMany(mappedBy = "candidato")
     public List<VotoCandidatoMesa> getVotoCandidatoMesas() {
+	if (votoCandidatoMesas == null) {
+	    votoCandidatoMesas = new ArrayList<VotoCandidatoMesa>();
+	}
 	return this.votoCandidatoMesas;
     }
 
