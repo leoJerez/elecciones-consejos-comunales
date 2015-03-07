@@ -13,17 +13,17 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 
-import org.eleccion_comunal.model.dao.ConsejoComunalDAO;
+import org.eleccion_comunal.beans.application.EleccionComunalApplicationBean;
 import org.eleccion_comunal.model.dao.ViviendaDAO;
-import org.eleccion_comunal.model.dto.ConsejoComunal;
 import org.eleccion_comunal.model.dto.Vivienda;
 import org.primefaces.context.RequestContext;
 
 /**
- *
+ * 
  * @author Roberth
  */
 @ManagedBean(name = "viviendaViewBean")
@@ -33,14 +33,14 @@ public class ViviendaViewBean implements Serializable {
 	private Vivienda newVivienda;
 	private Vivienda viviendaSelected;
 	private List<Vivienda> listaDeViviendas;
-	private List<ConsejoComunal> listaConsejosComunales;
+
+	@ManagedProperty(value = "#{eleccionComunalApplicationBean}")
+	private EleccionComunalApplicationBean eleccionComunalApplicationBean;
 
 	@PostConstruct
 	public void init() {
 		this.getListaDeViviendas().addAll(
 				ViviendaDAO.getInstancia().buscarTodasEntidades());
-		this.getListaConsejosComunales().addAll(
-				ConsejoComunalDAO.getInstancia().buscarTodasEntidades());
 	}
 
 	public ViviendaViewBean() {
@@ -58,7 +58,7 @@ public class ViviendaViewBean implements Serializable {
 	}
 
 	public Vivienda getViviendaSelected() {
-		if(viviendaSelected == null){
+		if (viviendaSelected == null) {
 			viviendaSelected = new Vivienda();
 		}
 		return viviendaSelected;
@@ -79,22 +79,22 @@ public class ViviendaViewBean implements Serializable {
 		this.listaDeViviendas = listaDeViviendas;
 	}
 
-	public List<ConsejoComunal> getListaConsejosComunales() {
-		if (listaConsejosComunales == null) {
-			listaConsejosComunales = new ArrayList<ConsejoComunal>();
+	public EleccionComunalApplicationBean getEleccionComunalApplicationBean() {
+		if(eleccionComunalApplicationBean == null){
+			eleccionComunalApplicationBean = new EleccionComunalApplicationBean();
 		}
-		return listaConsejosComunales;
+		return eleccionComunalApplicationBean;
 	}
 
-	public void setListaConsejosComunales(
-			List<ConsejoComunal> listaConsejosComunales) {
-		this.listaConsejosComunales = listaConsejosComunales;
+	public void setEleccionComunalApplicationBean(
+			EleccionComunalApplicationBean eleccionComunalApplicationBean) {
+		this.eleccionComunalApplicationBean = eleccionComunalApplicationBean;
 	}
 
 	public void guardarVivienda() {
 		if (newVivienda != null) {
 			boolean existe = false;
-			for (Vivienda vivienda : this.listaDeViviendas) {
+			for (Vivienda vivienda : this.getListaDeViviendas()) {
 				if (vivienda.getNumeroCasa().equals(
 						this.getNewVivienda().getNumeroCasa())) {
 					existe = true;
@@ -102,36 +102,56 @@ public class ViviendaViewBean implements Serializable {
 				}
 			}
 			if (!existe) {
-				this.getNewVivienda().setConsejoComunal(this.listaConsejosComunales.get(0));
+				this.getNewVivienda().setConsejoComunal(
+						this.getEleccionComunalApplicationBean().getConsejoComunal());
 				this.getListaDeViviendas().add(this.getNewVivienda());
 				ViviendaDAO.getInstancia().actualizar(this.getNewVivienda());
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Operacion Exitosa", "Se ha registrado una vivienda"));
-                RequestContext.getCurrentInstance().update("formVivienda:growl");
-                RequestContext.getCurrentInstance().update("formVivienda");
+				FacesContext.getCurrentInstance().addMessage(
+						null,
+						new FacesMessage(FacesMessage.SEVERITY_INFO,
+								"Operacion Exitosa",
+								"Se ha registrado una vivienda"));
+				RequestContext.getCurrentInstance()
+						.update("formVivienda:growl");
+				RequestContext.getCurrentInstance().update("formVivienda");
 			} else {
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Operacion Fallida", "La vivienda ya existe, por favor verifique el numero de casa"));
-                RequestContext.getCurrentInstance().update("formVivienda:growl");
-                RequestContext.getCurrentInstance().update("formVivienda");
+				FacesContext
+						.getCurrentInstance()
+						.addMessage(
+								null,
+								new FacesMessage(FacesMessage.SEVERITY_ERROR,
+										"Operacion Fallida",
+										"La vivienda ya existe, por favor verifique el numero de casa"));
+				RequestContext.getCurrentInstance()
+						.update("formVivienda:growl");
+				RequestContext.getCurrentInstance().update("formVivienda");
 			}
 		}
 	}
-	
-	public void editarVivienda(){
-		if(viviendaSelected != null){
+
+	public void editarVivienda() {
+		if (viviendaSelected != null) {
 			ViviendaDAO.getInstancia().actualizar(this.getViviendaSelected());
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Operacion Exitosa", "Vivienda Actualizada"));
-            RequestContext.getCurrentInstance().update("formVivienda:growl");
-            RequestContext.getCurrentInstance().update("formVivienda");
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO,
+							"Operacion Exitosa", "Vivienda Actualizada"));
+			RequestContext.getCurrentInstance().update("formVivienda:growl");
+			RequestContext.getCurrentInstance().update("formVivienda");
 		}
 	}
-	
-	public void eliminarVivienda(){
-		if(viviendaSelected != null){
-			ViviendaDAO.getInstancia().eliminarLogicamente(this.getViviendaSelected());
+
+	public void eliminarVivienda() {
+		if (viviendaSelected != null) {
+			ViviendaDAO.getInstancia().eliminarLogicamente(
+					this.getViviendaSelected());
 			this.getListaDeViviendas().remove(this.getViviendaSelected());
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Operacion Exitosa", "Se elimino una vivienda"));
-            RequestContext.getCurrentInstance().update("formVivienda:growl");
-            RequestContext.getCurrentInstance().update("formVivienda");
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO,
+							"Operacion Exitosa", "Se elimino una vivienda"));
+			RequestContext.getCurrentInstance().update("formVivienda:growl");
+			RequestContext.getCurrentInstance().update("formVivienda");
 		}
 	}
 }
