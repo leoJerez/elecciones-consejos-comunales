@@ -9,26 +9,30 @@
 	<ui:define name="content">
 		<h:form>
 			<p:panel style="float: left; width: 81%;">
-				<ui:include src="/content/carouselNoticias.xhtml" />
+				<ui:include src="/portal/utils/carouselNoticias.xhtml" />
 
 				<p:panel styleClass="contenedorFunciones">
-					<p:commandLink actionListener="#{principalRequestBean.redireccionar('/faces/app/habitanteCRUD.xhtml')}">
-						<p:panel styleClass="panelFuncion panelFuncionPrimero">
-							<p:panel styleClass="panelFuncionSinHover">
-								<p:graphicImage url="../resources/img/schedule.png"
-									styleClass="imagenInternaFuncion" />
-								<p:panel styleClass="panelInternoFuncion">
-									<p:outputLabel value="Actualizar Datos"
-										styleClass="textoInternoFuncion" />
-								</p:panel>
-							</p:panel>
-							<p:panel styleClass="funcionHover">
-								<p:outputLabel
-									value="Mantén al día la información de los vecinos"
-									styleClass="textoHoverFuncion" />
+					<!-- 					<p:commandLink> -->
+					<p:panel styleClass="panelFuncion panelFuncionPrimero">
+						<p:panel styleClass="panelFuncionSinHover">
+							<p:graphicImage url="../resources/img/schedule.png"
+								styleClass="imagenInternaFuncion" />
+							<p:panel styleClass="panelInternoFuncion">
+								<p:outputLabel value="Actualizar Datos"
+									styleClass="textoInternoFuncion" />
 							</p:panel>
 						</p:panel>
-					</p:commandLink>
+						<p:panel styleClass="funcionHover">
+							<p:commandLink value="Datos de Vecinos"
+								actionListener="#{principalRequestBean.redireccionar('/faces/app/habitanteCRUD.xhtml')}" />
+							<p:commandLink value="Datos de Viviendas"
+								actionListener="#{principalRequestBean.redireccionar('/faces/app/vivienda.xhtml')}" />
+							<!-- 								<p:outputLabel -->
+							<!-- 									value="Mantén al día la información de los vecinos" -->
+							<!-- 									styleClass="textoHoverFuncion" /> -->
+						</p:panel>
+					</p:panel>
+					<!-- 					</p:commandLink> -->
 
 					<p:commandLink>
 						<p:panel styleClass="panelFuncion panelFuncionSegundo">
@@ -47,7 +51,7 @@
 						</p:panel>
 					</p:commandLink>
 
-					<p:commandLink>
+					<p:commandLink onclick="PF('consultarRegistro').show();">
 						<p:panel styleClass="panelFuncion panelFuncionSegundo">
 							<p:panel styleClass="panelFuncionSinHover">
 								<p:graphicImage url="../resources/img/registroElectoral.png"
@@ -129,6 +133,8 @@
 					</p:commandLink>
 				</p:panel>
 			</p:panel>
+
+			<ui:include src="/app/dialogos/consultarRegistroElectoral.xhtml" />
 		</h:form>
 	</ui:define>
 </ui:composition>
