@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
  */
 @Entity
 @NamedQuery(name = "Eleccion.findAll", query = "SELECT e FROM Eleccion e")
-public class Eleccion extends EntidadGenerica implements Serializable {
+public class Eleccion extends EntidadGenerica implements Serializable, Comparable<Eleccion> {
     private static final long serialVersionUID = 1L;
     private Integer idEleccion;
     private Date fechaEvento;
@@ -78,6 +79,9 @@ public class Eleccion extends EntidadGenerica implements Serializable {
     // bi-directional many-to-one association to Candidato
     @OneToMany(mappedBy = "eleccion")
     public List<Candidato> getCandidatos() {
+	if (candidatos == null) {
+	    candidatos = new ArrayList<Candidato>();
+	}
 	return this.candidatos;
     }
 
@@ -102,6 +106,9 @@ public class Eleccion extends EntidadGenerica implements Serializable {
     // bi-directional many-to-one association to MesaElectoral
     @OneToMany(mappedBy = "eleccion")
     public List<MesaElectoral> getMesaElectorals() {
+	if (mesaElectorals == null) {
+	    mesaElectorals = new ArrayList<MesaElectoral>();
+	}
 	return this.mesaElectorals;
     }
 
@@ -126,6 +133,9 @@ public class Eleccion extends EntidadGenerica implements Serializable {
     // bi-directional many-to-one association to MiembrosConsejo
     @OneToMany(mappedBy = "eleccion")
     public List<MiembrosConsejo> getMiembrosConsejos() {
+	if (miembrosConsejos == null) {
+	    miembrosConsejos = new ArrayList<MiembrosConsejo>();
+	}
 	return this.miembrosConsejos;
     }
 
@@ -157,6 +167,28 @@ public class Eleccion extends EntidadGenerica implements Serializable {
     public String toString() {
 	// TODO Auto-generated method stub
 	return null;
+    }
+    
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the elementId fields are not set
+        if (!(object instanceof Eleccion)) {
+            return false;
+        }
+        Eleccion other = (Eleccion) object;
+        if ((this.idEleccion == null && other.idEleccion != null) || (this.idEleccion != null && !this.idEleccion.equals(other.idEleccion))) {
+            return false;
+        }
+        return true;
+    }
+    
+    @Override
+    public int compareTo(Eleccion eleccion) {
+        if (getFechaEvento() != null && eleccion.getFechaEvento() != null) {
+            return getFechaEvento().compareTo(eleccion.getFechaEvento());
+        } else {
+            return -1;
+        }
     }
 
 }

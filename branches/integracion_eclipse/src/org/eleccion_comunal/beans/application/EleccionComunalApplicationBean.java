@@ -15,41 +15,39 @@ import org.eleccion_comunal.model.dto.ConsejoComunal;
 @ApplicationScoped
 public class EleccionComunalApplicationBean implements Serializable {
 
-	private List<ConsejoComunal> listaConsejosComunales;
-	private ConsejoComunal consejoComunal;
+    private List<ConsejoComunal> listaConsejosComunales;
+    private ConsejoComunal consejoComunal;
 
-	public EleccionComunalApplicationBean() {
-		super();
-	}
+    public EleccionComunalApplicationBean() {
+	super();
+    }
 
-	@PostConstruct
-	public void init() {
-		this.getListaConsejosComunales().addAll(
-				ConsejoComunalDAO.getInstancia().buscarTodasEntidades());
-		this.setConsejoComunal(this.getListaConsejosComunales().get(0));
-	}
+    @PostConstruct
+    public void init() {
+	this.getListaConsejosComunales().addAll(ConsejoComunalDAO.getInstancia().buscarTodasEntidades());
+	this.setConsejoComunal(this.getListaConsejosComunales().get(0));
+    }
 
-	public List<ConsejoComunal> getListaConsejosComunales() {
-		if (listaConsejosComunales == null) {
-			listaConsejosComunales = new ArrayList<ConsejoComunal>();
-		}
-		return listaConsejosComunales;
+    public List<ConsejoComunal> getListaConsejosComunales() {
+	if (listaConsejosComunales == null) {
+	    listaConsejosComunales = new ArrayList<ConsejoComunal>();
 	}
+	return listaConsejosComunales;
+    }
 
-	public void setListaConsejosComunales(
-			List<ConsejoComunal> listaConsejosComunales) {
-		this.listaConsejosComunales = listaConsejosComunales;
-	}
+    public void setListaConsejosComunales(List<ConsejoComunal> listaConsejosComunales) {
+	this.listaConsejosComunales = listaConsejosComunales;
+    }
 
-	public ConsejoComunal getConsejoComunal() {
-		if (consejoComunal == null) {
-			consejoComunal = new ConsejoComunal();
-		}
-		return consejoComunal;
+    public ConsejoComunal getConsejoComunal() {
+	if (consejoComunal == null) {
+	    consejoComunal = new ConsejoComunal();
 	}
+	return consejoComunal;
+    }
 
-	public void setConsejoComunal(ConsejoComunal consejoComunal) {
-		this.consejoComunal = consejoComunal;
-	}
+    public void setConsejoComunal(ConsejoComunal consejoComunal) {
+	this.consejoComunal = consejoComunal;
+    }
 
 }
