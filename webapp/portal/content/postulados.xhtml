@@ -1,17 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	template="/structural/template.xhtml" xmlns:p="http://primefaces.org/ui"
-	xmlns="http://www.w3.org/1999/xhtml"
+	template="/structural/template.xhtml"
+	xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 	<ui:define name="estilosInterfaz">
-		<h:outputStylesheet name="./css/posutlados.css" />
+		<h:outputStylesheet name="./css/postulados.css" />
 	</ui:define>
 	<ui:define name="content">
-		<h:form id="form">
-			<p:growl id="growl" showDetail="true" sticky="true" life="6000"/>
-			
+		<h:form id="form" styleClass="formulario">
+			<p:outputLabel value="Candidatos a las Elecciones Comunales 2015" styleClass="tituloPantalla"/>
+			<p:growl id="growl" showDetail="true" sticky="true" life="6000" />
+			<p:ring value="#{postuladosViewBean.imagenesPostulados}"
+				var="postulado" easing="easeInOutBack" styleClass="anilloPostulados">
+				<p:panel styleClass="panelCandidatoCompleto">
+					<p:panel
+						style="background: url(/SistemaElectoralComunal/resources/img/postulados/#{postulado}.jpg) no-repeat #1688d9;"
+						styleClass="panelFotoCandidato">
+					</p:panel>
+					<p:panel styleClass="panelDetallesCandidato">
+						<p:outputLabel value="Nombre:"
+							styleClass="letrasDetalleCandidato letrasSubtitulosCandidato" />
+						<p:outputLabel value="#{postulado} Jerez"
+							styleClass="letrasDetalleCandidato" />
+						<p:outputLabel value="Edad:"
+							styleClass="letrasDetalleCandidato letrasSubtitulosCandidato" />
+						<p:outputLabel value="26 Años" styleClass="letrasDetalleCandidato" />
+						<p:outputLabel value="Profesión u Ocupación:"
+							styleClass="letrasDetalleCandidato letrasSubtitulosCandidato" />
+						<p:outputLabel value="Ingeniero en Informática"
+							styleClass="letrasDetalleCandidato" />
+						<p:outputLabel value="Fecha de Ingreso a la Comunidad:"
+							styleClass="letrasDetalleCandidato letrasSubtitulosCandidato" />
+						<p:outputLabel value="28/06/2000"
+							styleClass="letrasDetalleCandidato" />
+						<p:outputLabel value="Cargo que Aspira:"
+							styleClass="letrasDetalleCandidato letrasSubtitulosCandidato" />
+						<p:outputLabel value="Vocero de Finanzas"
+							styleClass="letrasDetalleCandidato" />
+					</p:panel>
+				</p:panel>
+			</p:ring>
+			<p:commandButton value="Postúlate" onclick="PF('postulate').show)();" styleClass="botonPostulate"/>
 			<ui:include src="/portal/dialogos/postulate.xhtml" />
 		</h:form>
 	</ui:define>
