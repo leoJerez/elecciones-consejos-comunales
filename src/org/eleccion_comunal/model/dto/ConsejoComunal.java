@@ -305,4 +305,18 @@ public class ConsejoComunal extends EntidadGenerica implements Serializable {
 	return null;
     }
 
+    @Override
+    public boolean equals(Object object) {
+	// TODO: Warning - this method won't work in the case the elementId
+	// fields are not set
+	if (!(object instanceof ConsejoComunal)) {
+	    return false;
+	}
+	ConsejoComunal other = (ConsejoComunal) object;
+	if ((this.idConsejoComunal == null && other.idConsejoComunal != null) || (this.idConsejoComunal != null && !this.idConsejoComunal.equals(other.idConsejoComunal))) {
+	    return false;
+	}
+	return true;
+    }
+
 }
