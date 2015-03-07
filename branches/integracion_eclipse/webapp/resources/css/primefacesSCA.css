@@ -44,8 +44,8 @@
 /***************************** Dialogos *****************************/
 
 .ui-dialog .ui-dialog-titlebar {
-    opacity: 0.8;
-	background: url('/SistemaElectoralComunal/resources/img/backgroundMenu.png') repeat-x scroll 0% 0% transparent !important;
+    opacity: 1;
+	background: url('/SistemaElectoralComunal/resources/img/template/backgroundMenu.png') repeat-x scroll 0% 0% transparent !important;
 	border: medium none !important;
 	height: 2vmax;
 	background-size: 100% 100% !important;
@@ -56,7 +56,7 @@
 .ui-dialog-content {
 /*     background: #DDEBF2 !important; */
 /*     border: #EEEEEE !important;  */
-	background: url('/SistemaElectoralComunal/resources/img/backgroundHeader.png') repeat-x scroll 0% 0%
+	background: url('/SistemaElectoralComunal/resources/img/template/backgroundHeader.png') repeat-x scroll 0% 0%
 		transparent !important;
 	border: medium none !important;
 	background-size: 100% 100% !important;

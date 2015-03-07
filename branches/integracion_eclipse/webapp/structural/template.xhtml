@@ -10,28 +10,31 @@
 	<meta http-equiv="Cache-Control" content="no-cache" />
 	<meta http-equiv="Pragma" CONTENT="no-cache" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link href="../resources/img/favicon.ico" rel="shorcut icon"
+	<link href="../resources/img/template/favicon.ico" rel="shorcut icon"
 		type="image/x-icon" />
 	<title><ui:insert name="title">
                 :-Bienvenidos-:
             </ui:insert></title>
-	<h:outputStylesheet name="./css/estilos.css" />
-	<h:outputStylesheet name="./css/iconos.css" />
 	<h:outputStylesheet name="./css/primefacesSCA.css" />
+	<h:outputStylesheet name="./css/template.css" />
+	<h:outputStylesheet name="./css/iconos.css" />
+	
+	<ui:insert name="estilosInterfaz">
+	</ui:insert>
 </h:head>
-<h:body id="entirePage" style="background-color: #eff3f6;">
+<h:body id="entirePage" style="background-color: #f4f4f4; margin: 0px;">
 
 	<p:panel style="border: none; background-color: #eff3f6;">
 
 		<p:panel styleClass="panelHeader">
-			<p:panel styleClass="banner" />
+			<p:panel styleClass="banner"/>
 			<p:outputLabel value="SEC - Sistema Electoral Comunal" styleClass="textoHeader"/>
-			<p:panel styleClass="logoOrion" />
+			<p:panel styleClass="logoAplicativo" />
 		</p:panel>
 
 		<p:panel styleClass="panelMenu">
 			<p:commandLink actionListener="#{principalRequestBean.redireccionar('/faces/index.xhtml')}">
-				<p:panel styleClass="menuItem primerMenuItem">
+				<p:panel styleClass="contenedorMenuItem menuItem primerMenuItem">
 					<p:outputLabel value="Inicio" styleClass="textoMenu" />
 					<p:panel styleClass="panelHoverMenuItem">
 						<p:outputLabel value="Inicio" styleClass="textoMenuHover" />
@@ -41,7 +44,7 @@
 
 
 			<p:commandLink>
-				<p:panel styleClass="menuItem">
+				<p:panel styleClass="contenedorMenuItem menuItem">
 					<p:outputLabel value="Quiénes Somos" styleClass="textoMenu" />
 					<p:panel styleClass="panelHoverMenuItem">
 						<p:outputLabel value="Quienes Somos" styleClass="textoMenuHover" />
@@ -49,7 +52,7 @@
 				</p:panel>
 			</p:commandLink>
 			<p:commandLink>
-				<p:panel styleClass="menuItem">
+				<p:panel styleClass="contenedorMenuItem menuItem">
 					<p:outputLabel value="Misión y Visión" styleClass="textoMenu" />
 					<p:panel styleClass="panelHoverMenuItem">
 						<p:outputLabel value="Misión y Visión" styleClass="textoMenuHover" />
@@ -57,7 +60,7 @@
 				</p:panel>
 			</p:commandLink>
 			<p:commandLink>
-				<p:panel styleClass="menuItem">
+				<p:panel styleClass="contenedorMenuItem menuItem">
 					<p:outputLabel value="Galeria" styleClass="textoMenu" />
 					<p:panel styleClass="panelHoverMenuItem">
 						<p:outputLabel value="Galeria" styleClass="textoMenuHover" />
@@ -65,7 +68,7 @@
 				</p:panel>
 			</p:commandLink>
 			<p:commandLink>
-				<p:panel styleClass="menuItem">
+				<p:panel styleClass="contenedorMenuItem menuItem">
 					<p:outputLabel value="Contáctanos" styleClass="textoMenu" />
 					<p:panel styleClass="panelHoverMenuItem">
 						<p:outputLabel value="Contactanos" styleClass="textoMenuHover" />
