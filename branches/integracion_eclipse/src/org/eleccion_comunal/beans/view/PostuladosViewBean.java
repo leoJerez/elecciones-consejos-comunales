@@ -36,7 +36,7 @@ public class PostuladosViewBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		this.cargarImagenesPostilados();
+		this.cargarImagenesPostulados();
 	}
 
 	public List<String> getImagenesPostulados() {
@@ -61,20 +61,21 @@ public class PostuladosViewBean implements Serializable {
 		this.listaCandidatos = listaCandidatos;
 	}
 
-	public void cargarImagenesPostilados() {
-		// System.out.println("URL> "+PropertiesLocator.getProperty("urlFotoVecino"));
-		// this.getImagenesPostulados().add("/SistemaElectoralComunal/faces/resources/img/facebook.png");
-		this.getImagenesPostulados().add(
-				PropertiesLocator.getProperty("urlFotoVecino") + "add.png");
+	public void cargarImagenesPostulados() {
+//		this.getImagenesPostulados().add(
+//				PropertiesLocator.getProperty("urlFotoVecino") + "add.png");
 		this.getImagenesPostulados()
-				.add(PropertiesLocator.getProperty("urlFotoVecino")
-						+ "facebook.png");
+				.add("H2");
 		this.getImagenesPostulados()
-				.add(PropertiesLocator.getProperty("urlFotoVecino")
-						+ "donacion.png");
-		System.out.println(this.getImagenesPostulados().get(0));
-		System.out.println(this.getImagenesPostulados().get(1));
-		System.out.println(this.getImagenesPostulados().get(2));
+				.add("M1");
+		this.getImagenesPostulados()
+		.add("M2");
+		this.getImagenesPostulados()
+		.add("M3");
+		this.getImagenesPostulados()
+		.add("H2");
+		this.getImagenesPostulados()
+		.add("H3");
 	}
 
 	public StreamedContent obtenerImagen(String ruta) {
