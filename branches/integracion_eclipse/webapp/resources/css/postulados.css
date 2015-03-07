@@ -1,0 +1,45 @@
+.anilloPostulados {
+/* 	height: 63% !important; */
+}
+
+.panelCandidatoCompleto {
+	opacity: 1;
+	background: #f4f4f4;
+	border: 3px solid #424242;
+	width: 16vw;
+}
+
+.panelFotoCandidato {
+	background-size: 100% 100% !important;
+	width: 8vw;
+	height: 10vw;
+	border: 2px solid #424242;
+	margin: 0 auto;
+}
+
+.panelDetallesCandidato {
+	border: 1px solid #424242;
+	width: 93%;
+	background-color: #f4f4f4;
+	text-align: left;
+	padding: 0.5vw !important;
+}
+
+.letrasDetalleCandidato {
+	color: #303030 !important;
+	display: block;
+}
+
+.letrasSubtitulosCandidato {
+	font-weight: bold;
+}
+
+.botonPostulate {
+	margin-top: 18vw;
+	height: 2.5vw !important;
+	color: #f4f4f4 !important;
+	font-weight: bold !important;
+	font-size: 1.2vw !important;
+	border-radius: 4px !important;
+	width: 24% !important;
+}
