@@ -1,56 +1,147 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-
 	<p:dialog widgetVar="editarVivienda" modal="true" closable="true"
-		header="Actualizar datos de la vivienda" position="center">
-		<p:panel id="pnlInformacionVivienda"
-			style="width: 130.8%;height: 107.78%;margin-top: -3%;margin-left: -0.62%;border: 0px;">
-			<p:outputLabel value="Actualizar Vivienda"
-				style="font-size: 3em;margin-left: 26%;" />
-			<p:panel id="contenido"
-				style="margin-top: 2%; height: 10vw; width: 65vw;margin-left: 2%;">
-				<p:outputLabel value="Nro Casa:"
-					style="font-family: Georgia,serif; font-size: 1.3em;" />
-				<p:inputText value="#{viviendaViewBean.newVivienda.numeroCasa}"
-					style="margin-left: 1.1%;" />
-				<p:outputLabel value="Nombre Casa:"
-					style="font-family: Georgia,serif; font-size: 1.3em; margin-left: 2%;" />
-				<p:inputText value="#{viviendaViewBean.newVivienda.nombreCasa}"
-					style="margin-left: 1%;" />
-				<p:outputLabel value="Calle:"
-					style="font-family: Georgia,serif; font-size: 1.3em; margin-left: 2%;" />
-				<p:inputText value="#{viviendaViewBean.newVivienda.calle}"
-					style="margin-left: 1%;" />
-				<p:outputLabel value="Carrera:"
-					style="font-family: Georgia,serif; font-size: 1.3em;" />
-				<p:inputText value="#{viviendaViewBean.newVivienda.carrera}"
-					style="margin-left: 2.5%; margin-top: 2%;" />
-				<p:outputLabel value="Manzana:"
-					style="font-family: Georgia,serif; font-size: 1.3em;margin-left: 2%;" />
-				<p:inputText value="#{viviendaViewBean.newVivienda.manzana}"
-					style="margin-left: 4.7%;" />
-				<p:outputLabel value="Habitaciones:"
-					style="font-family: Georgia,serif; font-size: 1.3em; margin-left: 2%;" />
-				<p:inputText
-					value="#{viviendaViewBean.newVivienda.cantidadHabitaciones}"
-					style="margin-left: 1%;width: 13.43%;" />
-				<p:outputLabel value="Cantidad de baños:"
-					style="font-family: Georgia,serif; font-size: 1.3em;" />
-				<p:inputText value="#{viviendaViewBean.newVivienda.cantidadBagnos}"
-					style="margin-left: 1%; width: 12.4%; margin-top: 2%;" />
-				<p:outputLabel value="Poste cercano:"
-					style="font-family: Georgia,serif; font-size: 1.3em; margin-left: 2%;" />
-				<p:inputText
-					value="#{viviendaViewBean.newVivienda.codigoPosteCercano}"
-					style="margin-left: 0.8%;" />
+		header="Actualizar datos de la vivienda" position="top"
+		style="height: 37vw !important">
+		<p:panel id="pnlEditarVivienda"
+			style="width: 100%;height: 31vw;margin-top: -3%;margin-left: -0.62%;border: 0px;">
+			<p:panel id="contenidoEditar"
+				style="margin-top: 6%;height: 30vw;width: 65vw;margin-left: 1%;border: 1px solid;">
+				<div style="width: 50%; float: left;">
+					<div style="float: left; margin-top: 1%; width: 75%">
+						<p:outputLabel value="Nro Casa:"
+							style="font-family: Georgia,serif; font-size: 1.3em;margin-left: 4%;" />
+						<p:inputText
+							value="#{viviendaViewBean.viviendaSelected.numeroCasa}"
+							style="margin-left: 15%;" disabled="true" />
+					</div>
+					<div style="float: left; margin-top: 1%; width: 75%">
+						<p:outputLabel value="Nombre Casa:"
+							style="font-family: Georgia,serif; font-size: 1.3em; margin-left: 4%;" />
+						<p:inputText
+							value="#{viviendaViewBean.viviendaSelected.nombreCasa}"
+							style="margin-left: 4%;" />
+					</div>
+					<div style="float: left; margin-top: 1%; width: 75%">
+						<p:outputLabel value="Calle:"
+							style="font-family: Georgia,serif;font-size: 1.3em;margin-left: 4%;" />
+						<p:inputText value="#{viviendaViewBean.viviendaSelected.calle}"
+							style="margin-left: 25%;" disabled="true" />
+					</div>
+					<div style="float: left; margin-top: 1%; width: 75%">
+						<p:outputLabel value="Carrera:"
+							style="font-family: Georgia,serif; font-size: 1.3em;margin-left: 4%;" />
+						<p:inputText value="#{viviendaViewBean.viviendaSelected.carrera}"
+							style="margin-left: 20%;" disabled="true" />
+					</div>
+				</div>
+				<div style="width: 50%; float: left">
+					<div style="float: left; margin-top: 1%; width: 75%">
+						<p:outputLabel value="Manzana:"
+							style="font-family: Georgia,serif; font-size: 1.3em;margin-left: -5%;" />
+						<p:inputText value="#{viviendaViewBean.viviendaSelected.manzana}"
+							style="margin-left: 25%;" disabled="true" />
+					</div>
+					<div style="float: left; margin-top: 1%; width: 75%">
+						<p:outputLabel value="Habitaciones:"
+							style="font-family: Georgia,serif; font-size: 1.3em;margin-left: -5%;" />
+						<p:inputText
+							value="#{viviendaViewBean.viviendaSelected.cantidadHabitaciones}"
+							style="margin-left: 16%;" />
+					</div>
+					<div style="float: left; margin-top: 1%; width: 75%">
+						<p:outputLabel value="Cantidad de baños:"
+							style="font-family: Georgia,serif; font-size: 1.3em;margin-left: -5%;" />
+						<p:inputText
+							value="#{viviendaViewBean.viviendaSelected.cantidadBannos}"
+							style="margin-left: 2%;" />
+					</div>
+					<div style="float: left; margin-top: 1%; width: 75%">
+						<p:outputLabel value="Poste cercano:"
+							style="font-family: Georgia,serif; font-size: 1.3em;margin-left: -5%;" />
+						<p:inputText
+							value="#{viviendaViewBean.viviendaSelected.codigoPosteCercano}"
+							style="margin-left: 14%;" disabled="true" />
+					</div>
+				</div>
+				<div
+					style="float: left; align-content: center; width: 100%; margin-top: 2%;">
+					<p:outputLabel value="Datos de Vehiculo:"
+						style="font-family: Georgia,serif; font-size: 1.3em;margin-left: -5%;" />
+					<p:panel rendered="false" style="width: 80%;margin-left: 15%;">
+						<div
+							style="width: 100%; align-content: center; margin-left: 6%; margin-top: 1%; height: 5vw">
+							<div style="width: 17%; float: left">
+								<p:outputLabel value="Placa:"
+									style="font-family: Georgia,serif; font-size: 1.3em;margin-left: -5%;" />
+								<p:inputText value="#{viviendaViewBean.newVivienda}"
+									style="margin-left: 14%;width: 80%;" />
+							</div>
+							<div style="width: 17%; float: left">
+								<p:outputLabel value="Marca:"
+									style="font-family: Georgia,serif; font-size: 1.3em;margin-left: -5%;" />
+								<p:inputText value="#{viviendaViewBean.newVivienda}"
+									style="margin-left: 14%;width: 80%;" />
+							</div>
+							<div style="width: 17%; float: left">
+								<p:outputLabel value="Modelo:"
+									style="font-family: Georgia,serif; font-size: 1.3em;margin-left: -5%;" />
+								<p:inputText value="#{viviendaViewBean.newVivienda}"
+									style="margin-left: 14%;width: 80%;" />
+							</div>
+							<div style="width: 17%; float: left">
+								<p:outputLabel value="Año:"
+									style="font-family: Georgia,serif; font-size: 1.3em;margin-left: -5%;" />
+								<p:inputText value="#{viviendaViewBean.newVivienda}"
+									style="margin-left: 14%;width: 80%;" />
+							</div>
+						</div>
+					</p:panel>
+					<div
+						style="width: 90%; align-content: center; margin-left: 6%; margin-top: 1%;">
+						<p:dataTable id="listaVehiculos"
+							value="#{viviendaViewBean.viviendaSelected.vehiculoViviendas}"
+							var="propiedad" style="width: 90%; margin-top: 1%;">
+							<p:column headerText="Marca">
+								<p:outputLabel value="#{propiedad.vehiculo.marca}" />
+							</p:column>
+							<p:column headerText="Modelo">
+								<p:outputLabel value="#{propiedad.vehiculo.modelo}" />
+							</p:column>
+							<p:column headerText="Placa">
+								<p:outputLabel value="#{propiedad.vehiculo.placa}" />
+							</p:column>
+							<p:column headerText="Año">
+								<p:outputLabel value="#{propiedad.vehiculo.anno}" />
+							</p:column>
+							<p:column headerText="Operaciones">
+								<p:commandButton title="Editar" icon="ui-icon-pencil"
+									onclick="PF('editarVivienda').show();">
+									<f:setPropertyActionListener value="#{vivienda}"
+										target="#{viviendaViewBean.viviendaSelected}" />
+								</p:commandButton>
+								<p:commandButton title="Eliminar"
+									action="#{viviendaViewBean.eliminarVivienda()}"
+									icon="ui-icon-trash">
+									<f:setPropertyActionListener value="#{vivienda}"
+										target="#{viviendaViewBean.viviendaSelected}" />
+									<p:confirm header="Confirmar Acción"
+										message="Estas Seguro que desea eliminar la vivienda?"
+										icon="ui-icon-alert" />
+								</p:commandButton>
+							</p:column>
+						</p:dataTable>
+					</div>
+				</div>
 				<p:commandButton value="Guardar"
 					actionListener="#{viviendaViewBean.editarVivienda()}"
-					update="listaPrueba" style="margin-left: 2%;" />
+					update="listaPrueba" />
 			</p:panel>
 		</p:panel>
 	</p:dialog>
