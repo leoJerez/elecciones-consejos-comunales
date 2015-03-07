@@ -6,6 +6,10 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui" template="structural/template.xhtml">
 
+	<ui:define name="estilosInterfaz">
+		<h:outputStylesheet name="./css/index.css" />
+	</ui:define>
+
 	<ui:define name="content">
 		<h:form>
 			<p:panel style="float: left; width: 81%;">
@@ -15,7 +19,7 @@
 					<!-- 					<p:commandLink> -->
 					<p:panel styleClass="panelFuncion panelFuncionPrimero">
 						<p:panel styleClass="panelFuncionSinHover">
-							<p:graphicImage url="../resources/img/schedule.png"
+							<p:graphicImage url="../resources/img/index/schedule.png"
 								styleClass="imagenInternaFuncion" />
 							<p:panel styleClass="panelInternoFuncion">
 								<p:outputLabel value="Actualizar Datos"
@@ -23,9 +27,9 @@
 							</p:panel>
 						</p:panel>
 						<p:panel styleClass="funcionHover">
-							<p:commandLink value="Datos de Vecinos"
+							<p:commandLink value="Datos de Vecinos" styleClass="enlaceActualizarDatos"
 								actionListener="#{principalRequestBean.redireccionar('/faces/app/habitanteCRUD.xhtml')}" />
-							<p:commandLink value="Datos de Viviendas"
+							<p:commandLink value="Datos de Viviendas" styleClass="enlaceActualizarDatos"
 								actionListener="#{principalRequestBean.redireccionar('/faces/app/vivienda.xhtml')}" />
 							<!-- 								<p:outputLabel -->
 							<!-- 									value="Mantén al día la información de los vecinos" -->
@@ -37,10 +41,10 @@
 					<p:commandLink>
 						<p:panel styleClass="panelFuncion panelFuncionSegundo">
 							<p:panel styleClass="panelFuncionSinHover">
-								<p:graphicImage url="../resources/img/postularse.jpg"
+								<p:graphicImage url="../resources/img/index/postularse.jpg"
 									styleClass="imagenInternaFuncion" />
 								<p:panel styleClass="panelInternoFuncion">
-									<p:outputLabel value="Postularse"
+									<p:outputLabel value="Postulados"
 										styleClass="textoInternoFuncion" />
 								</p:panel>
 							</p:panel>
@@ -54,7 +58,7 @@
 					<p:commandLink onclick="PF('consultarRegistro').show();">
 						<p:panel styleClass="panelFuncion panelFuncionSegundo">
 							<p:panel styleClass="panelFuncionSinHover">
-								<p:graphicImage url="../resources/img/registroElectoral.png"
+								<p:graphicImage url="../resources/img/index/registroElectoral.png"
 									styleClass="imagenInternaFuncion" />
 								<p:panel styleClass="panelInternoFuncion">
 									<p:outputLabel value="Registro Electoral"
@@ -71,7 +75,7 @@
 					<p:commandLink>
 						<p:panel styleClass="panelFuncion panelFuncionSegundo">
 							<p:panel styleClass="panelFuncionSinHover">
-								<p:graphicImage url="../resources/img/correo.png"
+								<p:graphicImage url="../resources/img/index/correo.png"
 									styleClass="imagenInternaFuncion" />
 								<p:panel styleClass="panelInternoFuncion">
 									<p:outputLabel value="Comunicación Interna"
@@ -91,7 +95,7 @@
 
 
 			<p:panel
-				style="width: 16% !important; float: right; margin-top: -1vmax;">
+				style="width: 16% !important; float: right; margin-top: 4vmax; margin-right: 2%;">
 
 				<p:commandButton value="Iniciar Sesión"
 					styleClass="botonInicioSesion" />
@@ -116,19 +120,19 @@
 					<p:commandLink
 						actionListener="#{principalRequestBean.redireccionar('https://www.facebook.com/')}"
 						styleClass="red">
-						<p:graphicImage url="../resources/img/facebook.png"
+						<p:graphicImage url="../resources/img/index/facebook.png"
 							styleClass="iconosRedes primeraRed" />
 					</p:commandLink>
 					<p:commandLink
 						actionListener="#{principalRequestBean.redireccionar('https://plus.google.com/getstarted/getstarted?fww=1')}"
 						styleClass="red">
-						<p:graphicImage url="../resources/img/gplus.png"
+						<p:graphicImage url="../resources/img/index/gplus.png"
 							styleClass="iconosRedes" />
 					</p:commandLink>
 					<p:commandLink
 						actionListener="#{principalRequestBean.redireccionar('https://instagram.com/')}"
 						styleClass="red">
-						<p:graphicImage url="../resources/img/instagram.png"
+						<p:graphicImage url="../resources/img/index/instagram.png"
 							styleClass="iconosRedes" />
 					</p:commandLink>
 				</p:panel>
