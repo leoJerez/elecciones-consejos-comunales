@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.eleccion_comunal.utilidades;
 
 import java.io.Serializable;
@@ -14,8 +9,9 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- *
- * @author Conamerica01
+ * Este objeto contiene métodos que permiten darle formato a diferentes tipos de datos
+ * 
+ * @author José Leonardo Jerez
  */
 public class Formateador implements Serializable {
 
@@ -24,123 +20,134 @@ public class Formateador implements Serializable {
     private static Formateador instancia;
 
     private Formateador() {
-        super();
+	super();
     }
 
     public static Formateador getInstancia() {
-        if (instancia == null) {
-            instancia = new Formateador();
-        }
-        return instancia;
-    }
-
-    public String obtenerFechaConFormato(Date fechaPorFormatear) {
-        DateFormat formateadorFecha = DateFormat.getInstance();
-        return formateadorFecha.format(fechaPorFormatear);
-    }
-
-    public String obtenerFechaConFormato2(Date fechaformatear) {
-        String fechaFormato;
-        DateFormat df = DateFormat.getDateInstance(DateFormat.LONG, new Locale("es", "VE"));
-        if (fechaformatear == null) {
-            fechaFormato = df.format(new Date());
-        } else {
-            fechaFormato = df.format(fechaformatear);
-        }
-        return fechaFormato;
+	if (instancia == null) {
+	    instancia = new Formateador();
+	}
+	return instancia;
     }
 
     /**
-     *
-     * @param fechaObjetivo es la fecha que queremos transformar a un formato
-     * facil de leer
+     * 
+     * @param fechaObjetivo
+     *            es la fecha que queremos transformar a un formato facil de
+     *            leer
      * @return String que contiene la fecha ya formateada en formato (FULL)
-     * ejemplo: "lunes 6 de agosto de 2012"
+     *         ejemplo: "lunes 6 de agosto de 2012"
      */
     public String formatearFechaEstiloCompleto(Date fechaObjetivo) {
-        DateFormat formatoFechaFull =  DateFormat.getDateInstance(DateFormat.FULL, new Locale("es", "VE"));
-        return formatoFechaFull.format(fechaObjetivo);
+	if (fechaObjetivo != null) {
+	    DateFormat formatoFechaFull = DateFormat.getDateInstance(DateFormat.FULL, new Locale("es", "VE"));
+	    return formatoFechaFull.format(fechaObjetivo);
+	} else {
+	    return "";
+	}
     }
 
     /**
-     *
-     * @param fechaObjetivo es la fecha que queremos transformar a un formato
-     * facil de leer
+     * 
+     * @param fechaObjetivo
+     *            es la fecha que queremos transformar a un formato facil de
+     *            leer
      * @return String que contiene la fecha ya formateada en formato (SHORT)
-     * ejemplo: "06/08/12"
+     *         ejemplo: "06/08/12"
      */
     public String formatearFechaEstiloCorto(Date fechaObjetivo) {
-        DateFormat formatoFechaShort = DateFormat.getDateInstance(DateFormat.SHORT, new Locale("es", "VE"));
-        return formatoFechaShort.format(fechaObjetivo);
+	if (fechaObjetivo != null) {
+	    DateFormat formatoFechaShort = DateFormat.getDateInstance(DateFormat.SHORT, new Locale("es", "VE"));
+	    return formatoFechaShort.format(fechaObjetivo);
+	} else {
+	    return "";
+	}
     }
 
     /**
-     *
-     * @param fechaObjetivo es la fecha que queremos transformar a un formato
-     * facil de leer
+     * 
+     * @param fechaObjetivo
+     *            es la fecha que queremos transformar a un formato facil de
+     *            leer
      * @return String que contiene la fecha ya formateada en formato (MEDIUM)
-     * ejemplo: "06/08/2012"
+     *         ejemplo: "06/08/2012"
      */
     public String formatearFechaEstiloMedio(Date fechaObjetivo) {
-        DateFormat formatoFechaMedium = DateFormat.getDateInstance(DateFormat.MEDIUM, new Locale("es", "VE"));
-        return formatoFechaMedium.format(fechaObjetivo);
+	if (fechaObjetivo != null) {
+	    DateFormat formatoFechaMedium = DateFormat.getDateInstance(DateFormat.MEDIUM, new Locale("es", "VE"));
+	    return formatoFechaMedium.format(fechaObjetivo);
+	} else {
+	    return "";
+	}
     }
 
     /**
-     *
-     * @param fechaObjetivo es la fecha que queremos transformar a un formato
-     * facil de leer
+     * 
+     * @param fechaObjetivo
+     *            es la fecha que queremos transformar a un formato facil de
+     *            leer
      * @return String que contiene la fecha ya formateada en formato (LONG)
-     * ejemplo: "6 de agosto de 2012"
+     *         ejemplo: "6 de agosto de 2012"
      */
     public String formatearFechaEstiloLargo(Date fechaObjetivo) {
-        DateFormat formatoFechaLong = DateFormat.getDateInstance(DateFormat.LONG, new Locale("es", "VE"));
-        return formatoFechaLong.format(fechaObjetivo);
+	if (fechaObjetivo != null) {
+	    DateFormat formatoFechaLong = DateFormat.getDateInstance(DateFormat.LONG, new Locale("es", "VE"));
+	    return formatoFechaLong.format(fechaObjetivo);
+	} else {
+	    return "";
+	}
     }
 
     /**
-     * Este metodo permite eliminar caracteres con tilde de una cadena de caracteres, sin importar si la cadena esta
-     * en mayusculas o minusculas
-     * @param input - cadena que se quiere modificar
+     * Este metodo permite eliminar caracteres con tilde de una cadena de
+     * caracteres, sin importar si la cadena esta en mayusculas o minusculas
+     * 
+     * @param input
+     *            - cadena que se quiere modificar
      * @return cadena sin tildes
      */
     public String removeCharacter(String input) {
-        String original = "Ã¡Ã Ã¤Ã©Ã¨Ã«Ã­Ã¬Ã¯Ã³Ã²Ã¶ÃºÃ¹uÃ±Ã?Ã€Ã„Ã‰ÃˆÃ‹Ã?ÃŒÃ?Ã“Ã’Ã–ÃšÃ™ÃœÃ‘Ã§Ã‡";
-        String ascii = "aaaeeeiiiooouuunAAAEEEIIIOOOUUUNcC";
-        String output = input;
-        try {
-            for (int i = 0; i < original.length(); i++) {
-                output = output.replace(original.charAt(i), ascii.charAt(i));
-            }
-        } catch (StringIndexOutOfBoundsException stringIndexOutOfBoundsException) {
-        }
-        return output;
+	String original = "áàäéèëíìïóòöúùuñÁÀÄÉÈËÍÌÏÓÒÖÚÙÜÑçÇ";
+	String ascii = "aaaeeeiiiooouuunAAAEEEIIIOOOUUUNcC";
+	String output = input;
+	try {
+	    for (int i = 0; i < original.length(); i++) {
+		output = output.replace(original.charAt(i), ascii.charAt(i));
+	    }
+	} catch (StringIndexOutOfBoundsException stringIndexOutOfBoundsException) {
+	}
+	return output;
     }
-    
+
     /**
-     * Este mÃ©todo se encarga de darle formato a un valor tipo Double, de tal forma que 
-     * el valor entrante sufra la siguiente transformaciÃ³n: valorEntrante = 9000,99923141
-     * valoRetorno = 9.000,99
+     * Este mÃ©todo se encarga de darle formato a un valor tipo Double, de tal
+     * forma que el valor entrante sufra la siguiente transformaciÃ³n:
+     * valorEntrante = 9000,99923141 valoRetorno = 9.000,99
      * 
-     * @param valorParaFormatear, valor que se desea formatear
+     * @param valorParaFormatear
+     *            , valor que se desea formatear
+     * @param localidadParaFormato
+     *            , ejemplo: new Locale("es", "VE") para Venezuela
      * @return valorRetorno, valor ya formateado
      */
-    public String formatearDecimalDouble(Double valorParaFormatear) {
-        return String.format("%,.2f", valorParaFormatear);
+    public String formatearDecimalDouble(Double valorParaFormatear, Locale localidadParaFormato) {
+	return String.format(localidadParaFormato, "%,.2f", valorParaFormatear);
     }
-    
+
     /**
-     * Este mÃ©todo se encarga de darle formato a un valor tipo Double para que haga uso 
-     * de los separadores de miles segÃºn a notaciÃ³n venezolana, de tal forma que el valor entrante sufra la siguiente 
-     * transformaciÃ³n: valorEntrante = 9000,99923141
-     * valoRetorno = 9.000
+     * Este mÃ©todo se encarga de darle formato a un valor tipo Double para que
+     * haga uso de los separadores de miles segÃºn a notaciÃ³n venezolana, de
+     * tal forma que el valor entrante sufra la siguiente transformaciÃ³n:
+     * valorEntrante = 9000,99923141 valoRetorno = 9.000
      * 
-     * @param valorParaFormatear, valor que se desea formatear
-     * @param localidadParaFormato, ejemplo: new Locale("es", "VE") para Venezuela
+     * @param valorParaFormatear
+     *            , valor que se desea formatear
+     * @param localidadParaFormato
+     *            , ejemplo: new Locale("es", "VE") para Venezuela
      * @return valorRetorno, valor ya formateado
      */
     public String formatearEnteroMiles(Double valorParaFormatear, Locale localidadParaFormato) {
-        return NumberFormat.getNumberInstance(localidadParaFormato).format(valorParaFormatear.intValue());
+	return NumberFormat.getNumberInstance(localidadParaFormato).format(valorParaFormatear.intValue());
     }
 
 }
