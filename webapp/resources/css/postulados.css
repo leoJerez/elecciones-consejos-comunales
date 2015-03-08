@@ -43,3 +43,12 @@
 	border-radius: 4px !important;
 	width: 24% !important;
 }
+
+.botonAceptar {
+	width: 10vw !important;
+	border-radius: 4px !important;
+	height: 2vw !important;
+	font-weight: bold !important;
+	font-size: 1vw !important;
+	margin-top: 2vw;
+}
