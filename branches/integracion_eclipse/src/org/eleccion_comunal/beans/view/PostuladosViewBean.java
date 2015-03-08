@@ -170,6 +170,7 @@ public class PostuladosViewBean implements Serializable {
 	Vecino vecino = AccionarSobreElecciones.getInstancia().buscarEnRegistroElectoral(this.getVecino().getCedula());
 	if (vecino != null) {
 	    this.setVecino(vecino);
+		this.getPostulado().setVecino(this.getVecino());
 	    this.setExisteVecino(true);
 	    this.setMensajeBusqueda("");
 	} else {

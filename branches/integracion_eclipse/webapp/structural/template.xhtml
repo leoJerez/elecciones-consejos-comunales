@@ -44,19 +44,19 @@
 			</p:commandLink>
 
 
-			<p:commandLink>
-				<p:panel styleClass="contenedorMenuItem menuItem">
-					<p:outputLabel value="Quiénes Somos" styleClass="textoMenu" />
-					<p:panel styleClass="panelHoverMenuItem">
-						<p:outputLabel value="Quienes Somos" styleClass="textoMenuHover" />
-					</p:panel>
-				</p:panel>
-			</p:commandLink>
-			<p:commandLink>
+			<p:commandLink actionListener="#{principalRequestBean.redireccionar('/faces/portal/content/misionVision.xhtml')}">
 				<p:panel styleClass="contenedorMenuItem menuItem">
 					<p:outputLabel value="Misión y Visión" styleClass="textoMenu" />
 					<p:panel styleClass="panelHoverMenuItem">
 						<p:outputLabel value="Misión y Visión" styleClass="textoMenuHover" />
+					</p:panel>
+				</p:panel>
+			</p:commandLink>
+			<p:commandLink actionListener="#{principalRequestBean.redireccionar('/faces/portal/content/historia.xhtml')}">
+				<p:panel styleClass="contenedorMenuItem menuItem">
+					<p:outputLabel value="Historia" styleClass="textoMenu" />
+					<p:panel styleClass="panelHoverMenuItem">
+						<p:outputLabel value="Historia" styleClass="textoMenuHover" />
 					</p:panel>
 				</p:panel>
 			</p:commandLink>

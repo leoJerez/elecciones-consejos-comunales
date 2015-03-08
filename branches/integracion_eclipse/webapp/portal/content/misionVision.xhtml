@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="/structural/template.xhtml"
+	xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	<ui:define name="estilosInterfaz">
+		<h:outputStylesheet name="./css/misionVision.css" />
+	</ui:define>
+	<ui:define name="content">
+		<h:form id="form" styleClass="formulario" style="width: 70%; margin: 0 auto;">
+			<p:outputLabel value="Misión" styleClass="tituloPantalla contenidoMisionVision"/>
+			<p:outputLabel value="#{principalViewBean.consejoComunal.mision}" styleClass="contenidoMisionVision"/>
+			
+			<p:outputLabel value="Visión" styleClass="tituloPantalla contenidoMisionVision"/>
+			<p:outputLabel value="#{principalViewBean.consejoComunal.vision}" styleClass="contenidoMisionVision"/>
+			
+		</h:form>
+	</ui:define>
+</ui:composition>
