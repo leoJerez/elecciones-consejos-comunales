@@ -6,7 +6,36 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 
-	<p:dialog id="postulate" widgetVar="postulate" modal="true" closable="true" header="Postúlate" position="center">
-		<p:outputLabel value="AQUI VA EL CONTENIDO"/>
+	<p:dialog id="postulate" widgetVar="postulate" modal="true" appendTo="form"
+		closable="true" header="Postúlate" position="center">
+		<p:panel>
+			<p:outputLabel value="Cédula: " />
+			<p:inputText placeholder="V-18560575"
+				title="Cédula, ejemplo: V-18560575"
+				value="#{postuladosViewBean.vecino.cedula}" />
+			<p:commandButton value="" icon="ui-icon-search" actionListener="#{postuladosViewBean.buscarVecino()}"
+				styleClass="botonBuscar" update="datosPersonales"/>
+		</p:panel>
+
+		<p:fieldset id="datosPersonales" legend="Datos Personales">
+			<p:outputLabel value="Nombre: " styleClass="letrasDetalleCandidato letrasSubtitulosCandidato"/>
+			<p:outputLabel value="#{postuladosViewBean.vecino.nombre}" styleClass="letrasDetalleCandidato"/>
+			<p:outputLabel value="Apellido: " styleClass="letrasDetalleCandidato letrasSubtitulosCandidato"/>
+			<p:outputLabel value="#{postuladosViewBean.vecino.apellido}" styleClass="letrasDetalleCandidato"/>
+			<p:outputLabel value="Edad: " styleClass="letrasDetalleCandidato letrasSubtitulosCandidato"/>
+			<p:outputLabel value="#{postuladosViewBean.obtenerEdadCandidato(postuladosViewBean.vecino.fechaNacimiento)}" rendered="#{postuladosViewBean.obtenerEdadCandidato(postuladosViewBean.vecino.fechaNacimiento) != 0}" styleClass="letrasDetalleCandidato"/>
+			<p:outputLabel value="" rendered="#{postuladosViewBean.obtenerEdadCandidato(postuladosViewBean.vecino.fechaNacimiento) == 0}" styleClass="letrasDetalleCandidato"/>
+		</p:fieldset>
+		
+		<p:outputLabel value="Cargo que aspira:"/>
+		
+		<p:selectOneMenu value="#{postuladosViewBean.postulado.cargo}" converter="cargoConverter" styleClass="margin-top: 2vw;">
+            <f:selectItem itemLabel="Seleccione" itemValue="" />
+            <f:selectItems value="#{postuladosViewBean.listaCargos}" var="cargo" itemLabel="#{cargo.nombre}" itemValue="#{cargo}"/>
+        </p:selectOneMenu>
+		
+		<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+		
+		<p:commandButton value="Aceptar" styleClass="botonAceptar" actionListener="#{postuladosViewBean.guardarPostulacion()}" oncomplete="PF('postulate').hide();"/>
 	</p:dialog>
 </ui:composition>

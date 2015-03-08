@@ -151,8 +151,7 @@ public class Cargo extends EntidadGenerica implements Serializable {
 
     @Override
     public Object getPrimaryKey() {
-	// TODO Auto-generated method stub
-	return null;
+	return this.getIdCargo();
     }
 
     @Override

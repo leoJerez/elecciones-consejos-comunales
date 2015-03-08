@@ -5,3 +5,28 @@
 .tituloPantalla {
 	font-size: 3vw;
 }
+
+.botonBuscar {
+	height: 1.5vw !important;
+	border-radius: 4px !important;
+	width: 2vw !important;
+	margin-left: 1vw;
+}
+
+.panelMensajeError {
+	height: 4vw;
+	width: 100%;
+	background: #bf0000;
+	border-radius: 4px;
+	position: relative;
+}
+
+.letrasPanelMensaje {
+	color: #f4f4f4 !important;
+	font-weight: bold;
+	position: absolute;
+	top: 12%;
+	width: 100%;
+	left: 0;
+	opacity: 1;
+}

@@ -106,7 +106,7 @@ public class Candidato extends EntidadGenerica implements Serializable {
     }
 
     // bi-directional many-to-one association to VotoCandidatoMesa
-    @OneToMany(mappedBy = "candidato")
+    @OneToMany(mappedBy = "candidato", orphanRemoval = true, cascade = CascadeType.ALL)
     public List<VotoCandidatoMesa> getVotoCandidatoMesas() {
 	if (votoCandidatoMesas == null) {
 	    votoCandidatoMesas = new ArrayList<VotoCandidatoMesa>();
