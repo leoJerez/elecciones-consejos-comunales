@@ -41,7 +41,7 @@ public class VehiculoVivienda extends EntidadGenerica implements Serializable {
     }
 
     // bi-directional many-to-one association to Vehiculo
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_vehiculo")
     public Vehiculo getVehiculo() {
 	return this.vehiculo;
@@ -52,7 +52,7 @@ public class VehiculoVivienda extends EntidadGenerica implements Serializable {
     }
 
     // bi-directional many-to-one association to Vivienda
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_vivienda")
     public Vivienda getVivienda() {
 	return this.vivienda;
@@ -65,7 +65,7 @@ public class VehiculoVivienda extends EntidadGenerica implements Serializable {
     @Override
     public Object getPrimaryKey() {
 	// TODO Auto-generated method stub
-	return null;
+	return this.getIdVehiculoVivienda();
     }
 
     @Override

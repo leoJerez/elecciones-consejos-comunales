@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	template="/structural/template.xhtml" 
-	xmlns:p="http://primefaces.org/ui"
-	xmlns="http://www.w3.org/1999/xhtml"
+	template="/structural/template.xhtml"
+	xmlns:p="http://primefaces.org/ui" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:pe="http://primefaces.org/ui/extensions"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
@@ -39,16 +38,16 @@
 					<p:outputLabel value="Habitaciones:"
 						style="font-family: Georgia,serif; font-size: 1.3em; margin-left: 2%;" />
 					<p:inputText
-						value="#{viviendaViewBean.newVivienda.cantidadHabitaciones}" 
-						style="margin-left: 1%;width: 13.43%;" >
-							<pe:keyFilter regEx="/[0-9]/i" />
-						</p:inputText>
+						value="#{viviendaViewBean.newVivienda.cantidadHabitaciones}"
+						style="margin-left: 1%;width: 13.43%;">
+						<pe:keyFilter regEx="/[0-9]/i" />
+					</p:inputText>
 					<p:outputLabel value="Cantidad de baños:"
 						style="font-family: Georgia,serif; font-size: 1.3em;" />
 					<p:inputText value="#{viviendaViewBean.newVivienda.cantidadBannos}"
-						style="margin-left: 1%; width: 12.4%; margin-top: 2%;" >
-							<pe:keyFilter regEx="/[0-9]/i" />
-						</p:inputText>
+						style="margin-left: 1%; width: 12.4%; margin-top: 2%;">
+						<pe:keyFilter regEx="/[0-9]/i" />
+					</p:inputText>
 					<p:outputLabel value="Poste cercano:"
 						style="font-family: Georgia,serif; font-size: 1.3em; margin-left: 2%;" />
 					<p:inputText
@@ -75,15 +74,12 @@
 					</p:column>
 					<p:column headerText="Operaciones">
 						<p:commandButton title="Editar" icon="ui-icon-pencil"
-							onclick="PF('editarVivienda').show();" update=":formVivienda:pnlEditarVivienda" >
-							<f:setPropertyActionListener value="#{vivienda}"
-								target="#{viviendaViewBean.viviendaSelected}" />
+							actionListener="#{viviendaViewBean.desplegarDialogoEditar(vivienda)}"
+							update=":formVivienda:pnlEditarVivienda" >
 						</p:commandButton>
 						<p:commandButton title="Eliminar"
-							action="#{viviendaViewBean.eliminarVivienda()}"
+							action="#{viviendaViewBean.eliminarVivienda(vivienda)}"
 							icon="ui-icon-trash">
-							<f:setPropertyActionListener value="#{vivienda}"
-								target="#{viviendaViewBean.viviendaSelected}" />
 							<p:confirm header="Confirmar Acción"
 								message="Estas Seguro que desea eliminar la vivienda?"
 								icon="ui-icon-alert" />
@@ -99,7 +95,7 @@
 						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 				</p:confirmDialog>
 			</p:panel>
- 			<ui:include src="../app/dialogos/editarVivienda.xhtml" />
+			<ui:include src="../app/dialogos/editarVivienda.xhtml" />
 		</h:form>
 	</ui:define>
 </ui:composition>

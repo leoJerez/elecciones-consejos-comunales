@@ -13,14 +13,15 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
-
-import org.eleccion_comunal.beans.application.EleccionComunalApplicationBean;
+import org.eleccion_comunal.model.dao.ConsejoComunalDAO;
 import org.eleccion_comunal.model.dao.VehiculoDAO;
 import org.eleccion_comunal.model.dao.VehiculoViviendaDAO;
 import org.eleccion_comunal.model.dao.ViviendaDAO;
+import org.eleccion_comunal.model.dto.ConsejoComunal;
+import org.eleccion_comunal.model.dto.EntidadGenerica;
 import org.eleccion_comunal.model.dto.Vehiculo;
 import org.eleccion_comunal.model.dto.VehiculoVivienda;
 import org.eleccion_comunal.model.dto.Vivienda;
@@ -37,18 +38,24 @@ public class ViviendaViewBean implements Serializable {
 	private Vivienda newVivienda;
 	private Vivienda viviendaSelected;
 	private List<Vivienda> listaDeViviendas;
+	private List<Vehiculo> listaDeVehiculos;
+	private List<Vehiculo> listaDeVehiculosEditar;
+	private List<VehiculoVivienda> listaDePropiedades;
 	private Vehiculo nuevoVehiculo;
 	private VehiculoVivienda vehiculoSelected;
 	private boolean agregarVehiculo;
 
-	@ManagedProperty(value = "#{eleccionComunalApplicationBean}")
-	private EleccionComunalApplicationBean eleccionComunalApplicationBean;
-
 	@PostConstruct
 	public void init() {
+		this.viviendaSelected = new Vivienda();
 		this.getListaDeViviendas().addAll(
 				ViviendaDAO.getInstancia().buscarTodasEntidades());
+		this.getListaDeVehiculos().addAll(
+				VehiculoDAO.getInstancia().buscarTodasEntidades());
+//		this.getListaDePropiedades().addAll(
+//				);
 		this.setAgregarVehiculo(false);
+		obtenerVehiculosDeLaVivienda();
 	}
 
 	public ViviendaViewBean() {
@@ -87,6 +94,39 @@ public class ViviendaViewBean implements Serializable {
 		this.listaDeViviendas = listaDeViviendas;
 	}
 
+	public List<Vehiculo> getListaDeVehiculos() {
+		if (listaDeVehiculos == null) {
+			listaDeVehiculos = new ArrayList<Vehiculo>();
+		}
+		return listaDeVehiculos;
+	}
+
+	public void setListaDeVehiculos(List<Vehiculo> listaDeVehiculos) {
+		this.listaDeVehiculos = listaDeVehiculos;
+	}
+
+	public List<Vehiculo> getListaDeVehiculosEditar() {
+		if (listaDeVehiculosEditar == null) {
+			listaDeVehiculosEditar = new ArrayList<Vehiculo>();
+		}
+		return listaDeVehiculosEditar;
+	}
+
+	public void setListaDeVehiculosEditar(List<Vehiculo> listaDeVehiculosEditar) {
+		this.listaDeVehiculosEditar = listaDeVehiculosEditar;
+	}
+
+	public List<VehiculoVivienda> getListaDePropiedades() {
+		if (listaDePropiedades == null) {
+			listaDePropiedades = new ArrayList<VehiculoVivienda>();
+		}
+		return listaDePropiedades;
+	}
+
+	public void setListaDePropiedades(List<VehiculoVivienda> listaDePropiedades) {
+		this.listaDePropiedades = listaDePropiedades;
+	}
+
 	public Vehiculo getNuevoVehiculo() {
 		if (nuevoVehiculo == null) {
 			nuevoVehiculo = new Vehiculo();
@@ -117,18 +157,6 @@ public class ViviendaViewBean implements Serializable {
 		this.agregarVehiculo = agregarVehiculo;
 	}
 
-	public EleccionComunalApplicationBean getEleccionComunalApplicationBean() {
-		if (eleccionComunalApplicationBean == null) {
-			eleccionComunalApplicationBean = new EleccionComunalApplicationBean();
-		}
-		return eleccionComunalApplicationBean;
-	}
-
-	public void setEleccionComunalApplicationBean(
-			EleccionComunalApplicationBean eleccionComunalApplicationBean) {
-		this.eleccionComunalApplicationBean = eleccionComunalApplicationBean;
-	}
-
 	public void guardarVivienda() {
 		if (newVivienda != null) {
 			boolean existe = false;
@@ -141,8 +169,8 @@ public class ViviendaViewBean implements Serializable {
 			}
 			if (!existe) {
 				this.getNewVivienda().setConsejoComunal(
-						this.getEleccionComunalApplicationBean()
-								.getConsejoComunal());
+						(ConsejoComunal) ConsejoComunalDAO.getInstancia()
+								.buscarEntidadPorClave(1));
 				this.getListaDeViviendas().add(this.getNewVivienda());
 				ViviendaDAO.getInstancia().actualizar(this.getNewVivienda());
 				FacesContext.getCurrentInstance().addMessage(
@@ -168,9 +196,9 @@ public class ViviendaViewBean implements Serializable {
 		}
 	}
 
-	public void editarVivienda() {
-		if (viviendaSelected != null) {
-			ViviendaDAO.getInstancia().actualizar(this.getViviendaSelected());
+	public void editarVivienda(Vivienda vivienda) {
+		if (viviendaSelected != null && vivienda.getIdVivienda() != null) {
+			ViviendaDAO.getInstancia().actualizar(vivienda);
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_INFO,
@@ -180,11 +208,21 @@ public class ViviendaViewBean implements Serializable {
 		}
 	}
 
-	public void eliminarVivienda() {
+	public boolean existeVehiculo(Vehiculo vehiculo) {
+		boolean exist = false;
+		for (Vehiculo vehiculoBD : this.getListaDeVehiculos()) {
+			if (vehiculoBD.getPlaca().equals(vehiculo.getPlaca())) {
+				exist = true;
+				break;
+			}
+		}
+		return exist;
+	}
+
+	public void eliminarVivienda(Vivienda vivienda) {
 		if (viviendaSelected != null) {
-			ViviendaDAO.getInstancia().eliminarLogicamente(
-					this.getViviendaSelected());
-			this.getListaDeViviendas().remove(this.getViviendaSelected());
+			ViviendaDAO.getInstancia().eliminarLogicamente(vivienda);
+			this.getListaDeViviendas().remove(vivienda);
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_INFO,
@@ -194,35 +232,63 @@ public class ViviendaViewBean implements Serializable {
 		}
 	}
 
+	public void desplegarDialogoEditar(Vivienda vivienda) {
+		this.setViviendaSelected(vivienda);
+		obtenerVehiculosDeLaVivienda();
+		RequestContext.getCurrentInstance().execute(
+				"PF('editarVivienda').show()");
+	}
+
 	public void cargarPanelVehiculo() {
+		System.out.print("Datos>> " + getViviendaSelected().getIdVivienda()
+				+ " " + getViviendaSelected().getCalle() + " "
+				+ getViviendaSelected().getNombreCasa());
 		this.setAgregarVehiculo(true);
 	}
 
 	public void agregarVehiculo() {
 		if (this.getNuevoVehiculo() != null) {
-			System.out.print("Iniciando Carga...");
-			VehiculoVivienda propiedades = new VehiculoVivienda();
-			propiedades.setVivienda(this.getViviendaSelected());
-			System.out.print("agrego vivienda");
-			propiedades.setVehiculo(this.getNuevoVehiculo());
-			System.out.print("agrego vehiculo");
-			VehiculoViviendaDAO.getInstancia().actualizar(propiedades);
-			this.getViviendaSelected().getVehiculoViviendas().add(propiedades);
-			System.out.print("agrego propiedad a la vivienda seleccionada");
+			if (!existeVehiculo(this.getNuevoVehiculo())) {
+				VehiculoVivienda propiedades = new VehiculoVivienda();
+				propiedades.setVivienda(this.getViviendaSelected());
+				Vehiculo vehiculo = (Vehiculo) VehiculoDAO.getInstancia().actualizar(this.getNuevoVehiculo());
+				propiedades.setVehiculo(vehiculo);
+				propiedades = (VehiculoVivienda) VehiculoViviendaDAO.getInstancia().actualizar(propiedades);
+				this.getViviendaSelected().getVehiculoViviendas()
+						.add(propiedades);
+				this.setNuevoVehiculo(new Vehiculo());
+				obtenerVehiculosDeLaVivienda();
+				FacesContext.getCurrentInstance().addMessage(
+						null,
+						new FacesMessage(FacesMessage.SEVERITY_INFO,
+								"Operacion Exitosa",
+								"Se agrego un nuevo vehiculo"));
+				RequestContext.getCurrentInstance()
+						.update("formVivienda:growl");
+				RequestContext.getCurrentInstance().update(
+						"formVivienda:pnlEditarVivienda");
+			} else {
+				FacesContext
+						.getCurrentInstance()
+						.addMessage(
+								null,
+								new FacesMessage(FacesMessage.SEVERITY_ERROR,
+										"Operacion Fallida",
+										"Ya existe un vehiculo con este numero de placa, por favor verifique"));
+				RequestContext.getCurrentInstance()
+						.update("formVivienda:growl");
+			}
 		}
 	}
 
-	public void eliminarVehiculo() {
-		System.out.print("Esta nul");
-		if (vehiculoSelected != null) {
-			System.out.print("Paso por aqui");
-			VehiculoViviendaDAO.getInstancia().eliminarFisicamente(
-					this.getVehiculoSelected());
-			System.out.print("Elimino la Relacion");
-			VehiculoDAO.getInstancia().eliminarFisicamente(
-					getVehiculoSelected().getVehiculo());
-			this.getViviendaSelected().getVehiculoViviendas()
-					.remove(this.getVehiculoSelected());
+	public void eliminarVehiculo(Vehiculo vehiculo) {
+		System.out.println("ID CARRO ELIMINAR -> "+vehiculo.getIdVehiculo());
+		if (vehiculo != null) {
+//			VehiculoVivienda propiedad = (VehiculoVivienda) VehiculoViviendaDAO.getInstancia().buscarEntidadPorPropiedad("vehiculo", vehiculo);
+//			System.out.println("ID CARRO ELIMINAR -> "+propiedad.getIdVehiculoVivienda());
+//			VehiculoViviendaDAO.getInstancia().eliminarFisicamente(propiedad);
+			VehiculoDAO.getInstancia().eliminarLogicamente(
+					vehiculo);
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_INFO,
@@ -231,6 +297,20 @@ public class ViviendaViewBean implements Serializable {
 			RequestContext.getCurrentInstance().update(
 					"formVivienda:contenidoEditar");
 
+		}
+	}
+
+	public void obtenerVehiculosDeLaVivienda() {
+		List<VehiculoVivienda> lista = (List<VehiculoVivienda>) VehiculoViviendaDAO.getInstancia().buscarTodasEntidades();
+		for (VehiculoVivienda propiedad : lista) {
+			if (propiedad.getVivienda().getIdVivienda()
+					.equals(this.getViviendaSelected().getIdVivienda())) {
+				if(!this.getListaDeVehiculosEditar().contains(propiedad.getVehiculo())){
+					if(propiedad.getVehiculo().getStatus().equals(EntidadGenerica.DATA_ACTIVA)){
+						this.getListaDeVehiculosEditar().add(propiedad.getVehiculo());
+					}
+				}
+			}
 		}
 	}
 }

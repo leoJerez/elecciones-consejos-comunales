@@ -144,7 +144,7 @@ public class Vivienda extends EntidadGenerica implements Serializable {
     }
 
     // bi-directional many-to-one association to VehiculoVivienda
-    @OneToMany(mappedBy = "vivienda")
+    @OneToMany(mappedBy = "vivienda",orphanRemoval = true, cascade = CascadeType.ALL)
     public List<VehiculoVivienda> getVehiculoViviendas() {
 	return this.vehiculoViviendas;
     }
@@ -177,17 +177,39 @@ public class Vivienda extends EntidadGenerica implements Serializable {
     public void setConsejoComunal(ConsejoComunal consejoComunal) {
 	this.consejoComunal = consejoComunal;
     }
-
+    
     @Override
-    public Object getPrimaryKey() {
-	// TODO Auto-generated method stub
-	return null;
+    protected void finalize() throws Throwable {
+        // TODO Auto-generated method stub
+        super.finalize();
     }
 
     @Override
     public String toString() {
-	// TODO Auto-generated method stub
-	return null;
+        // TODO Auto-generated method stub
+        return "";
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (this.getIdVivienda() != null ? this.getIdVivienda().hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Vivienda)) {
+            return false;
+        }
+        Vivienda other = (Vivienda) object;
+        return (this.getIdVivienda() != null || other.getIdVivienda() == null) && (this.getIdVivienda() == null || this.getIdVivienda().equals(other.getIdVivienda()));
+    }
+
+	@Override
+	public Object getPrimaryKey() {
+		// TODO Auto-generated method stub
+		return this.getIdVivienda();
+	}
 }
