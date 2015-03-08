@@ -6,7 +6,52 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 
-	<p:dialog id="consultarRegistro" widgetVar="consultarRegistro" modal="true" closable="true" header="Consultar en el Registro Electoral Comunal" position="center">
-		<p:outputLabel value="AQUI VA EL CONTENIDO"/>
+	<p:dialog id="consultarRegistro" widgetVar="consultarRegistro"
+		modal="true" closable="true"
+		header="Consultar en el Registro Electoral Comunal" position="center">
+		<p:ajax event="close" listener="#{registroElectoralViewBean.limpiarCampoDeBusqueda()}" update="consultarRegistro" />
+		<p:panel style="height: auto">
+			<p:outputLabel value="Cédula: " />
+			<p:inputText placeholder="V-18560575"
+				title="Cédula, ejemplo: V-18560575"
+				value="#{registroElectoralViewBean.vecino.cedula}" />
+			<p:commandButton value="" icon="ui-icon-search"
+				actionListener="#{registroElectoralViewBean.buscarVecino()}"
+				styleClass="botonBuscar" update="panel datosPersonales" />
+		</p:panel>
+		<p:panel id="panel" visible="#{registroElectoralViewBean.renderPanel}" >
+			<p:fieldset id="datosPersonales" legend="Datos Personales">
+				<div>
+					<p:outputLabel value="Nombre: "
+						styleClass="letrasDetalleCandidato letrasSubtitulosCandidato" />
+					<p:outputLabel value="#{registroElectoralViewBean.vecino.nombre}"
+						styleClass="letrasDetalleCandidato" />
+				</div>
+				<div>
+					<p:outputLabel value="Apellido: "
+						styleClass="letrasDetalleCandidato letrasSubtitulosCandidato" />
+					<p:outputLabel value="#{registroElectoralViewBean.vecino.apellido}"
+						styleClass="letrasDetalleCandidato" />
+				</div>
+				<div>
+					<p:outputLabel value="Edad: "
+						styleClass="letrasDetalleCandidato letrasSubtitulosCandidato" />
+					<p:outputLabel
+						value="#{postuladosViewBean.obtenerEdadCandidato(registroElectoralViewBean.vecino.fechaNacimiento)}"
+						rendered="#{registroElectoralViewBean.obtenerEdadCandidato(registroElectoralViewBean.vecino.fechaNacimiento) != 0}"
+						styleClass="letrasDetalleCandidato" />
+					<p:outputLabel value=""
+						rendered="#{registroElectoralViewBean.obtenerEdadCandidato(registroElectoralViewBean.vecino.fechaNacimiento) == 0}"
+						styleClass="letrasDetalleCandidato" />
+				</div>
+			</p:fieldset>
+			<p:messages id="messages" showDetail="true" autoUpdate="true"
+				closable="true" />
+		</p:panel>
+		<p:commandButton value="Aceptar"
+			actionListener="#{registroElectoralViewBean.limpiarCampoDeBusqueda()}"
+			styleClass="botonAceptar"
+			oncomplete="PF('consultarRegistro').hide();"
+			update="consultarRegistro" />
 	</p:dialog>
 </ui:composition>
