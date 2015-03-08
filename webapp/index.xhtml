@@ -11,7 +11,7 @@
 	</ui:define>
 
 	<ui:define name="content">
-		<h:form>
+		<h:form id="form">
 			<p:panel style="float: left; width: 81%;">
 				<ui:include src="/portal/utils/carouselNoticias.xhtml" />
 
@@ -92,7 +92,7 @@
 			<p:panel
 				style="width: 16% !important; float: right; margin-top: 4vmax; margin-right: 2%;">
 
-				<p:commandButton value="Iniciar Sesión"
+				<p:commandButton value="Iniciar Sesión" onclick="PF('login').show();"
 					styleClass="botonInicioSesion" />
 
 				<a class="twitter-timeline"
@@ -134,6 +134,7 @@
 			</p:panel>
 
 			<ui:include src="/app/dialogos/consultarRegistroElectoral.xhtml" />
+			<ui:include src="/portal/dialogos/iniciarSesion.xhtml" />
 		</h:form>
 	</ui:define>
 </ui:composition>
