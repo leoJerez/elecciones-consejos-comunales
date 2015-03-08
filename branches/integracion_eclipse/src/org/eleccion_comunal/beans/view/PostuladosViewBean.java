@@ -1,16 +1,11 @@
 package org.eleccion_comunal.beans.view;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.Serializable;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -18,21 +13,26 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
-import javax.faces.event.PhaseId;
 import javax.faces.view.ViewScoped;
 
-import org.eleccion_comunal.beans.application.EleccionComunalApplicationBean;
+import org.eleccion_comunal.beans.controller.AccionarSobreElecciones;
 import org.eleccion_comunal.enums.Estado;
 import org.eleccion_comunal.model.dao.CandidatoDAO;
+import org.eleccion_comunal.model.dao.CargoDAO;
 import org.eleccion_comunal.model.dao.ConsejoComunalDAO;
 import org.eleccion_comunal.model.dao.EleccionDAO;
+import org.eleccion_comunal.model.dao.VecinoDAO;
 import org.eleccion_comunal.model.dto.Candidato;
+import org.eleccion_comunal.model.dto.Cargo;
+import org.eleccion_comunal.model.dto.ConsejoComunal;
 import org.eleccion_comunal.model.dto.Eleccion;
+import org.eleccion_comunal.model.dto.Vecino;
+import org.eleccion_comunal.model.dto.VotoCandidatoMesa;
 import org.eleccion_comunal.utilidades.Formateador;
+import org.eleccion_comunal.utilidades.GeneradorMensajes;
 import org.eleccion_comunal.utilidades.ManejadorFechas;
-import org.eleccion_comunal.utilidades.PropertiesLocator;
+import org.primefaces.context.RequestContext;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
@@ -41,14 +41,18 @@ import org.primefaces.model.StreamedContent;
 public class PostuladosViewBean implements Serializable {
 
     private static final long serialVersionUID = 187L;
-    private List<String> imagenesPostulados;
     private List<Candidato> listaCandidatos;
     private List<Eleccion> listaElecciones;
+    private List<Cargo>	listaCargos;
     private Eleccion eleccion;
+    private Candidato postulado;
+    private Vecino vecino;
     private int annoEleccion;
-    
-//    @ManagedProperty(value = "#{eleccionComunalApplicationBean}")
-//    private EleccionComunalApplicationBean eleccionComunalApplicationBean;
+    private boolean existeVecino;
+    private String mensajeBusqueda;
+
+    // @ManagedProperty(value = "#{eleccionComunalApplicationBean}")
+    // private EleccionComunalApplicationBean eleccionComunalApplicationBean;
 
     public PostuladosViewBean() {
 	// TODO Auto-generated constructor stub
@@ -56,21 +60,11 @@ public class PostuladosViewBean implements Serializable {
 
     @PostConstruct
     public void init() {
-	this.cargarImagenesPostulados();
-	this.setEleccion(this.buscarProximaElecion());
-	this.setListaCandidatos(this.obtenerCandidatos(eleccion));
-	this.setAnnoEleccion(this.obtenerAnnoEleccion(this.getEleccion()));
-    }
-
-    public List<String> getImagenesPostulados() {
-	if (imagenesPostulados == null) {
-	    imagenesPostulados = new ArrayList<String>();
-	}
-	return imagenesPostulados;
-    }
-
-    public void setImagenesPostulados(List<String> imagenesPostulados) {
-	this.imagenesPostulados = imagenesPostulados;
+	this.setExisteVecino(false);
+	this.setEleccion(AccionarSobreElecciones.getInstancia().buscarProximaElecion());
+	this.setListaCandidatos(AccionarSobreElecciones.getInstancia().obtenerCandidatos(eleccion));
+	this.setAnnoEleccion(AccionarSobreElecciones.getInstancia().obtenerAnnoEleccion(this.getEleccion()));
+	this.getListaCargos().addAll(AccionarSobreElecciones.getInstancia().buscarCargos((ConsejoComunal)ConsejoComunalDAO.getInstancia().buscarEntidadPorClave(1)));
     }
 
     public List<Candidato> getListaCandidatos() {
@@ -83,113 +77,119 @@ public class PostuladosViewBean implements Serializable {
     public void setListaCandidatos(List<Candidato> listaCandidatos) {
 	this.listaCandidatos = listaCandidatos;
     }
-    
+
     public List<Eleccion> getListaElecciones() {
 	if (listaElecciones == null) {
 	    listaElecciones = new ArrayList<Eleccion>();
 	}
-        return listaElecciones;
+	return listaElecciones;
     }
 
     public void setListaElecciones(List<Eleccion> listaElecciones) {
-        this.listaElecciones = listaElecciones;
+	this.listaElecciones = listaElecciones;
+    }
+
+    public List<Cargo> getListaCargos() {
+	if (listaCargos == null) {
+	    listaCargos = new ArrayList<Cargo>();
+	}
+        return listaCargos;
+    }
+
+    public void setListaCargos(List<Cargo> listaCargos) {
+        this.listaCargos = listaCargos;
     }
 
     public Eleccion getEleccion() {
 	if (eleccion == null) {
 	    eleccion = new Eleccion();
 	}
-        return eleccion;
+	return eleccion;
     }
 
     public void setEleccion(Eleccion eleccion) {
-        this.eleccion = eleccion;
+	this.eleccion = eleccion;
+    }
+
+    public Candidato getPostulado() {
+	if (postulado == null) {
+	    postulado = new Candidato();
+	}
+	return postulado;
+    }
+
+    public void setPostulado(Candidato postulado) {
+	this.postulado = postulado;
+    }
+
+    public Vecino getVecino() {
+	if (vecino == null) {
+	    vecino = new Vecino();
+	}
+	return vecino;
+    }
+
+    public void setVecino(Vecino vecino) {
+	this.vecino = vecino;
     }
 
     public int getAnnoEleccion() {
-        return annoEleccion;
+	return annoEleccion;
     }
 
     public void setAnnoEleccion(int annoEleccion) {
-        this.annoEleccion = annoEleccion;
+	this.annoEleccion = annoEleccion;
     }
 
-    public void cargarImagenesPostulados() {
-	// this.getImagenesPostulados().add(
-	// PropertiesLocator.getProperty("urlFotoVecino") + "add.png");
-	this.getImagenesPostulados().add("H2");
-	this.getImagenesPostulados().add("M1");
-	this.getImagenesPostulados().add("M2");
-	this.getImagenesPostulados().add("M3");
-	this.getImagenesPostulados().add("H2");
-	this.getImagenesPostulados().add("H3");
+    public boolean isExisteVecino() {
+	return existeVecino;
     }
 
-    public StreamedContent obtenerImagen(String ruta) {
-
-	FacesContext context = FacesContext.getCurrentInstance();
-
-	try {
-	    System.out.println("ENTRAMOS");
-	    // String ruta =
-	    // context.getExternalContext().getRequestParameterMap().get("fotoPostulado");
-	    System.out.println("***--- " + ruta);
-	    // Path path = Paths.get(ruta);
-	    // byte[] data = Files.readAllBytes(path);
-	    // System.out.println("==== " + data);
-	    // return new DefaultStreamedContent(
-	    // new ByteArrayInputStream(data));
-
-	    File archivo = new File(ruta);
-	    System.out.println("EXISTE: " + archivo.isFile());
-	    return new DefaultStreamedContent(new FileInputStream(archivo));
-	} catch (IOException e) {
-	    e.printStackTrace();
-	}
-	return new DefaultStreamedContent();
-
+    public void setExisteVecino(boolean existeVecino) {
+	this.existeVecino = existeVecino;
     }
-    
-    public Eleccion buscarProximaElecion() {
-	this.getListaElecciones().addAll((List<Eleccion>) EleccionDAO.getInstancia().buscarTodasEntidades());
-	Collections.sort(this.getListaElecciones());
-	for (Eleccion eleccion : this.getListaElecciones()) {
-	    if (eleccion.getCandidatos() != null && !eleccion.getCandidatos().isEmpty()) {
-//		if (eleccion.getCandidatos().get(0).getCargo().getConsejoComunal().equals(this.eleccionComunalApplicationBean.getConsejoComunal())) {
-		if (eleccion.getCandidatos().get(0).getCargo().getConsejoComunal().equals(ConsejoComunalDAO.getInstancia().buscarEntidadPorClave(1))) {
-		    return eleccion;
-		}
-	    }
-	}
-	return new Eleccion();
+
+    public String getMensajeBusqueda() {
+	return mensajeBusqueda;
     }
-    
-    public int obtenerAnnoEleccion(Eleccion eleccion) {
-	if (eleccion.getFechaEvento() != null) {
-	    Calendar fechaEleccion = new GregorianCalendar();
-	    fechaEleccion.setTime(eleccion.getFechaEvento());
-	    return fechaEleccion.get(Calendar.YEAR);
-	} 
-	return 0;
+
+    public void setMensajeBusqueda(String mensajeBusqueda) {
+	this.mensajeBusqueda = mensajeBusqueda;
     }
-    
-    public List<Candidato> obtenerCandidatos(Eleccion eleccion) {
-	List<Candidato> candidatosAprobados = new ArrayList<Candidato>();
-	if (eleccion != null && eleccion.getCandidatos() != null && !eleccion.getCandidatos().isEmpty()) {
-	    for (Candidato candidato : eleccion.getCandidatos()) {
-		if (candidato.getEstado().equalsIgnoreCase(Estado.CANDIDATO_ESTADO_APROBADO.getValor())) {
-		    candidatosAprobados.add(candidato);
-		}
-	    }
-	}
-	return candidatosAprobados;
-    }
-    
+
     public int obtenerEdadCandidato(Date fechaNacimiento) {
 	return ManejadorFechas.getInstancia().calcularEdad(fechaNacimiento);
     }
-    
+
     public String obtenerFechaIngresoComunidadCandidato(Date fechaIngreso) {
 	return Formateador.getInstancia().formatearFechaEstiloLargo(fechaIngreso);
     }
+    
+    public void buscarVecino() {
+	List<String> cadenaMensajes = new ArrayList<String>();
+	Vecino vecino = AccionarSobreElecciones.getInstancia().buscarEnRegistroElectoral(this.getVecino().getCedula());
+	if (vecino != null) {
+	    this.setVecino(vecino);
+	    this.setExisteVecino(true);
+	    this.setMensajeBusqueda("");
+	} else {
+	    this.setExisteVecino(false);
+	    cadenaMensajes.add("Cédula no encontrada");
+	    cadenaMensajes.add("Cédula no registrada o el portador aun no es mayor de 15 años");
+	    this.setMensajeBusqueda("Cédula no registrada o el portador aun no es mayor de 15 años");
+	    GeneradorMensajes.getInstancia().generarMensaje('F', cadenaMensajes);
+	}
+    }
+    
+    public void guardarPostulacion() {
+	List<VotoCandidatoMesa> votoCandidatoMesas = new ArrayList<VotoCandidatoMesa>();
+	this.getPostulado().setVecino(this.getVecino());
+	this.getPostulado().setCantidadVotos(0);
+	this.getPostulado().setEleccion(this.getEleccion());
+	this.getPostulado().setVotoCandidatoMesas(votoCandidatoMesas);
+	this.getPostulado().setEstado(Estado.CANDIDATO_ESTADO_EN_PROCESO.getValor());
+	CandidatoDAO.getInstancia().insertarOActualizar(this.getPostulado());
+    }
+
+    
 }
