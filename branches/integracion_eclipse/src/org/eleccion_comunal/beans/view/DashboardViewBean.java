@@ -86,10 +86,10 @@ public class DashboardViewBean implements Serializable {
         barModel.setLegendPosition("ne");
          
         Axis xAxis = barModel.getAxis(AxisType.X);
-        xAxis.setLabel("Gender");
+        xAxis.setLabel("Años");
          
         Axis yAxis = barModel.getAxis(AxisType.Y);
-        yAxis.setLabel("Births");
+        yAxis.setLabel("Cantidad");
         yAxis.setMin(0);
         yAxis.setMax(200);
     }
