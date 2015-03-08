@@ -34,7 +34,8 @@ import org.primefaces.context.RequestContext;
 @ManagedBean(name = "viviendaViewBean")
 @ViewScoped
 public class ViviendaViewBean implements Serializable {
-
+	
+	private static final long serialVersionUID = 187L;
 	private Vivienda newVivienda;
 	private Vivienda viviendaSelected;
 	private List<Vivienda> listaDeViviendas;
@@ -296,7 +297,6 @@ public class ViviendaViewBean implements Serializable {
 			RequestContext.getCurrentInstance().update("formVivienda:growl");
 			RequestContext.getCurrentInstance().update(
 					"formVivienda:contenidoEditar");
-
 		}
 	}
 
