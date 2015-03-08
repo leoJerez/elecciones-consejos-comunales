@@ -111,5 +111,15 @@ public class Vehiculo extends EntidadGenerica implements Serializable {
 	// TODO Auto-generated method stub
 	return null;
     }
+    
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Vehiculo)) {
+            return false;
+        }
+        Vehiculo other = (Vehiculo) object;
+        return (this.getIdVehiculo() != null || other.getIdVehiculo() == null) && (this.getIdVehiculo() == null || this.getIdVehiculo().equals(other.getIdVehiculo()));
+    }
 
 }
