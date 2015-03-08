@@ -7,14 +7,12 @@
 	xmlns:pe="http://primefaces.org/ui/extensions"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 	<ui:define name="content">
-		<h:form id="formVivienda">
+		<h:form id="formVivienda" style="width: 66.8%; margin: 0 auto;">
 			<p:growl id="growl" showDetail="true" sticky="true" />
-			<p:panel id="pnlInformacionVivienda"
-				style="width: 130.8%;height: 107.78%;margin-top: -3%;margin-left: -0.62%;border: 0px;">
+			<p:panel id="pnlInformacionVivienda">
 				<p:outputLabel value="Registro de Vivienda"
-					style="font-size: 3em;margin-left: 26%;" />
-				<p:panel id="contenido"
-					style="margin-top: 2%; height: 10vw; width: 65vw;margin-left: 16%;">
+					style="font-size: 3em" />
+				<p:panel id="contenido" style="border: 0px; height: 30%; margin-top: 2vw;">
 					<p:outputLabel value="Nro Casa:"
 						style="font-family: Georgia,serif; font-size: 1.3em;" />
 					<p:inputText value="#{viviendaViewBean.newVivienda.numeroCasa}"
@@ -58,8 +56,7 @@
 						update="listaPrueba" style="margin-left: 2%;" />
 				</p:panel>
 				<p:dataTable id="listaPrueba"
-					value="#{viviendaViewBean.listaDeViviendas}" var="vivienda"
-					style="width: 35%; margin-left: 22.5%; margin-top: 1%;">
+					value="#{viviendaViewBean.listaDeViviendas}" var="vivienda">
 					<p:column headerText="Nro Casa">
 						<p:outputLabel value="#{vivienda.numeroCasa}" />
 					</p:column>
